@@ -1,5 +1,5 @@
 export type EmailData = {
-  name: string;
-  emailAddress: string;
+  fullname: string;
+  from: string;
   content: string;
 };

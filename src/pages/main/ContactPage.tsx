@@ -57,7 +57,7 @@ export default function ContactPage() {
               type='text'
               className='input-box'
               placeholder='Full name'
-              value={emailData.name ?? ''}
+              value={emailData.fullname ?? ''}
               onChange={(event) =>
                 setEmailData((prev) => ({ ...prev, name: event.target.value }))
               }
@@ -80,7 +80,7 @@ export default function ContactPage() {
               type='email'
               className='input-box'
               placeholder='Your Email Address'
-              value={emailData.emailAddress ?? ''}
+              value={emailData.from ?? ''}
               onChange={(event) =>
                 setEmailData((prev) => ({
                   ...prev,
