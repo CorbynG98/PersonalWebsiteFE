@@ -75,9 +75,9 @@ const FooterComponent = () => {
                     }}>
                     <strong>ABOUT</strong>
                   </p>
-                  <Nav.Link href='/Changelog' className='p-0 m-0 linkStyle'>
+                  <a href='https://github.com/CorbynG98/PersonalWebsiteFE/commits/main' className='p-0 m-0 linkStyle'>
                     Changelog
-                  </Nav.Link>
+                  </a>
                   <Nav.Link href='/Blog' className='p-0 m-0 linkStyle' disabled>
                     Blog
                   </Nav.Link>
@@ -95,9 +95,9 @@ const FooterComponent = () => {
                     }}>
                     <strong>ORG</strong>
                   </p>
-                  <Nav.Link href='/License' className='p-0 m-0 linkStyle'>
+                  <a href='https://github.com/CorbynG98/PersonalWebsiteFE/blob/main/LICENSE' className='p-0 m-0 linkStyle'>
                     License
-                  </Nav.Link>
+                  </a>
                   <Nav.Link
                     href='/Terms'
                     className='p-0 m-0 linkStyle'
@@ -190,9 +190,9 @@ const FooterComponent = () => {
                   }}>
                   <strong>ABOUT</strong>
                 </p>
-                <Nav.Link href='/Changelog' className='p-0 m-0 linkStyle'>
+                <a href='https://github.com/CorbynG98/PersonalWebsiteFE/commits/main' className='p-0 m-0 linkStyle'>
                   Changelog
-                </Nav.Link>
+                </a>
                 <Nav.Link href='/Blog' className='p-0 m-0 linkStyle' disabled>
                   Blog
                 </Nav.Link>
@@ -208,9 +208,9 @@ const FooterComponent = () => {
                   }}>
                   <strong>ORG</strong>
                 </p>
-                <Nav.Link href='/License' className='p-0 m-0 linkStyle'>
+                <a href='https://github.com/CorbynG98/PersonalWebsiteFE/blob/main/LICENSE' className='p-0 m-0 linkStyle'>
                   License
-                </Nav.Link>
+                </a>
                 <Nav.Link href='/Terms' className='p-0 m-0 linkStyle' disabled>
                   Terms
                 </Nav.Link>

@@ -1,5 +1,5 @@
 export type AboutYouData = {
   country: string;
-  region: string;
+  regionName: string;
   city: string;
 };

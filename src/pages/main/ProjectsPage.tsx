@@ -5,13 +5,11 @@ export default function ProjectsPage() {
   // Build UI
   return (
     <React.Fragment>
-      <div className='containerStyle'>
-        <Container>
-          <p style={{ color: 'white' }}>
-            This will be the projects when I make it
-          </p>
-        </Container>
-      </div>
+      <Container>
+        <p style={{ color: 'white' }}>
+          This will be the projects when I make it
+        </p>
+      </Container>
     </React.Fragment>
   );
 }

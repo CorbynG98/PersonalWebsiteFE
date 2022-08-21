@@ -2,8 +2,6 @@ import { Route, Routes } from 'react-router-dom';
 // CORE PAGES =====================
 import AboutPage from '@src/pages/main/AboutPage';
 // import ProjectsPage from '@src/pages/main/ProjectsPage';
-import ChangelogPage from '@src/pages/utility/ChangelogPage';
-import LicensePage from '@src/pages/utility/LicensePage';
 import HomePage from '../pages/main/HomePage';
 // UTILITY PAGES ===================
 import ContactPage from '@src/pages/main/ContactPage';
@@ -18,8 +16,6 @@ const RoutesComponent = () => {
       <Route path='/Projects' element={<UnderConstructionPage />} />
       <Route path='/About' element={<AboutPage />} />
       <Route path='/Contact' element={<ContactPage />} />
-      <Route path='/License' element={<LicensePage />} />
-      <Route path='/Changelog' element={<ChangelogPage />} />
       <Route path='*' element={<NotFoundPage />} />
     </Routes>
   );
