@@ -1,15 +1,10 @@
 import {
-  AnyAction,
-  applyMiddleware,
-  configureStore,
-  Store,
+  AnyAction, configureStore,
+  Store
 } from '@reduxjs/toolkit';
 import { State } from '@src/models/State';
 import { Dispatch } from 'react';
-import thunkMiddleware from 'redux-thunk';
 import auth_reducer from './reducers/auth_reducer';
-
-const thunkComposer = applyMiddleware(thunkMiddleware);
 
 const store: Store<State, any> & { dispatch: Dispatch<AnyAction> } =
   configureStore({
@@ -17,3 +12,4 @@ const store: Store<State, any> & { dispatch: Dispatch<AnyAction> } =
   });
 
 export { store };
+

@@ -139,12 +139,12 @@ export default function AboutPage() {
 
                 <div className='aboutYou'>
                   <h3 className='subTitle'>About You</h3>
-                  <a
+                  <p
                     className='contentText aboutYouShow specialLinkStyle'
                     onClick={toggleAboutYouData}
-                    role='link'>
+                  >
                     Wait a second, what?
-                  </a>
+                  </p>
                   {aboutYouShowing && (
                     <div className='aboutYouData'>
                       <p className='contentText'>
