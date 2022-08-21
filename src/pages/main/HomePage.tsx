@@ -18,7 +18,7 @@ export default function HomePage() {
               <img
                 src='https://storage.googleapis.com/public_images_ctg/hopefully-square.jpg'
                 className='mePhoto'
-                alt="me-picture-hopefully"></img>
+                alt="Close up image of my face in 2019"></img>
             </div>
           </div>
           <div className='hello'>
