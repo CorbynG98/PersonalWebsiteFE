@@ -1,7 +1,4 @@
-import {
-  faGithub,
-  faLinkedin
-} from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faBeerMugEmpty } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
@@ -67,7 +64,9 @@ const FooterComponent = () => {
                 </Container>
               </Col>
               <Col sm='4'>
-                <Container className='p-0 m-0 colContainerStyle' style={{alignItems: "center"}}>
+                <Container
+                  className='p-0 m-0 colContainerStyle'
+                  style={{ alignItems: 'center' }}>
                   <p
                     style={{
                       fontSize: '1rem',
@@ -85,7 +84,9 @@ const FooterComponent = () => {
                 </Container>
               </Col>
               <Col sm='4'>
-                <Container className='p-0 m-0 colContainerStyle' style={{alignItems: "flex-end"}}>
+                <Container
+                  className='p-0 m-0 colContainerStyle'
+                  style={{ alignItems: 'flex-end' }}>
                   <p
                     style={{
                       fontSize: '1rem',
@@ -97,7 +98,10 @@ const FooterComponent = () => {
                   <Nav.Link href='/License' className='p-0 m-0 linkStyle'>
                     License
                   </Nav.Link>
-                  <Nav.Link href='/Terms' className='p-0 m-0 linkStyle' disabled>
+                  <Nav.Link
+                    href='/Terms'
+                    className='p-0 m-0 linkStyle'
+                    disabled>
                     Terms
                   </Nav.Link>
                   <Nav.Link
@@ -113,15 +117,17 @@ const FooterComponent = () => {
         </div>
       </React.Fragment>
     );
-  }
+  };
 
   const renderCollapsedFooter = () => {
     return (
       <React.Fragment>
         <div className='footerBackgroundStyle footerPositionStyle'>
           <Container>
-            <Container className='p-0 m-0 colContainerStyle' style={{alignItems: "center"}}>
-              <div style={{display: "flex", paddingBottom: "0.5rem"}}>
+            <Container
+              className='p-0 m-0 colContainerStyle'
+              style={{ alignItems: 'center' }}>
+              <div style={{ display: 'flex', paddingBottom: '0.5rem' }}>
                 <img
                   alt=''
                   src='https://storage.googleapis.com/public_images_ctg/icon-512x512.png'
@@ -134,10 +140,10 @@ const FooterComponent = () => {
                   style={{
                     fontSize: '1.25rem',
                     color: 'white',
-                    alignItems: "center",
-                    paddingLeft: "1rem",
-                    marginTop: "auto",
-                    marginBottom: "auto"
+                    alignItems: 'center',
+                    paddingLeft: '1rem',
+                    marginTop: 'auto',
+                    marginBottom: 'auto',
                   }}>
                   CorbynGreenwood
                 </strong>
@@ -172,8 +178,10 @@ const FooterComponent = () => {
                 </a>
               </div>
             </Container>
-            <Container style={{display: "flex"}}>
-              <Container className='p-0 m-0 colContainerStyle' style={{alignItems: "center"}}>
+            <Container style={{ display: 'flex' }}>
+              <Container
+                className='p-0 m-0 colContainerStyle'
+                style={{ alignItems: 'center' }}>
                 <p
                   style={{
                     fontSize: '1rem',
@@ -189,7 +197,9 @@ const FooterComponent = () => {
                   Blog
                 </Nav.Link>
               </Container>
-              <Container className='p-0 m-0 colContainerStyle' style={{alignItems: "center"}}>
+              <Container
+                className='p-0 m-0 colContainerStyle'
+                style={{ alignItems: 'center' }}>
                 <p
                   style={{
                     fontSize: '1rem',
@@ -215,8 +225,8 @@ const FooterComponent = () => {
           </Container>
         </div>
       </React.Fragment>
-    )
-  }
+    );
+  };
 
   if (is1000px) return renderCollapsedFooter();
   else return renderPrimaryFooter();

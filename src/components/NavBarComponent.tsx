@@ -8,10 +8,10 @@ import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 
 type Props = {
-  isLoggedIn: boolean
-  loginCallBack: any
-  signoutCallBack: any
-}
+  isLoggedIn: boolean;
+  loginCallBack: any;
+  signoutCallBack: any;
+};
 
 const NavBarComponent = (props: Props) => {
   // Selector stuff
@@ -30,14 +30,13 @@ const NavBarComponent = (props: Props) => {
 
   const renderPrimaryNavbar = () => {
     return (
-      <Navbar 
+      <Navbar
         variant='dark'
         sticky='top'
-        expand="sm"
+        expand='sm'
         className={`m-auto ${
           isAtTop ? 'navNoBackground' : 'navSemiBackground'
-        }`}
-      >
+        }`}>
         <Container style={{ paddingTop: '0.3rem', paddingBottom: '0.3rem' }}>
           <Container className='p-0 m-0'>
             <Row style={{ display: 'flex', alignItems: 'center' }}>
@@ -57,14 +56,22 @@ const NavBarComponent = (props: Props) => {
                     className='d-inline-block align-top'
                     style={{ borderRadius: '15%' }}
                   />{' '}
-                  <strong style={{ marginLeft: '1rem', color: "white" }}>CorbynGreenwood</strong>
+                  <strong style={{ marginLeft: '1rem', color: 'white' }}>
+                    CorbynGreenwood
+                  </strong>
                 </Navbar.Brand>
               </Col>
               <Col md='8'>
                 <Nav style={{ justifyContent: 'center' }}>
-                  <Nav.Link href='/Projects' className="linkStyle">Projects</Nav.Link>
-                  <Nav.Link href='/About' className="linkStyle">About</Nav.Link>
-                  <Nav.Link href='/Contact' className="linkStyle">Contact</Nav.Link>
+                  <Nav.Link href='/Projects' className='linkStyle'>
+                    Projects
+                  </Nav.Link>
+                  <Nav.Link href='/About' className='linkStyle'>
+                    About
+                  </Nav.Link>
+                  <Nav.Link href='/Contact' className='linkStyle'>
+                    Contact
+                  </Nav.Link>
                 </Nav>
               </Col>
               <Col md='2'>
@@ -74,28 +81,26 @@ const NavBarComponent = (props: Props) => {
                     justifyContent: 'right',
                     alignItems: 'center',
                   }}>
-                  {
-                    props.isLoggedIn ?
-                      <NavDropdown 
-                        title={username}
-                        className="specialLinkStyle"
-                      >
-                        <NavDropdown.Item disabled>Admin Portal</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item style={{color: "red"}} onClick={props.signoutCallBack}>
-                          Logout
-                        </NavDropdown.Item>
-                      </NavDropdown>
-                    :
-                      <FontAwesomeIcon
-                        icon={faLock}
-                        size='2x'
-                        color='white'
-                        onClick={props.loginCallBack}
-                        style={{ paddingRight: '0.8rem' }}
-                        className="iconLinkStyle"
-                      />
-                  }
+                  {props.isLoggedIn ? (
+                    <NavDropdown title={username} className='specialLinkStyle'>
+                      <NavDropdown.Item disabled>Admin Portal</NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item
+                        style={{ color: 'red' }}
+                        onClick={props.signoutCallBack}>
+                        Logout
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  ) : (
+                    <FontAwesomeIcon
+                      icon={faLock}
+                      size='2x'
+                      color='white'
+                      onClick={props.loginCallBack}
+                      style={{ paddingRight: '0.8rem' }}
+                      className='iconLinkStyle'
+                    />
+                  )}
                   <a href='https://github.com/CorbynG98'>
                     <FontAwesomeIcon
                       icon={faGithub}
@@ -117,19 +122,19 @@ const NavBarComponent = (props: Props) => {
           </Container>
         </Container>
       </Navbar>
-    )
-  }
+    );
+  };
 
   const renderCollapsableNavBar = () => {
     return (
       <>
-        <Navbar 
+        <Navbar
           variant='dark'
           sticky='top'
-          expand="sm"
-          className={"m-auto navSemiBackground"}>
+          expand='sm'
+          className={'m-auto navSemiBackground'}>
           <Container style={{ paddingTop: '0.3rem', paddingBottom: '0.3rem' }}>
-            <Container className='p-0 m-0' style={{display: "flex"}}>
+            <Container className='p-0 m-0' style={{ display: 'flex' }}>
               <Navbar.Brand
                 href='/Home'
                 style={{
@@ -145,40 +150,44 @@ const NavBarComponent = (props: Props) => {
                   className='d-inline-block align-top'
                   style={{ borderRadius: '15%' }}
                 />{' '}
-                {!is360px && <strong style={{ marginLeft: '1rem' }}>CorbynGreenwood</strong>}
+                {!is360px && (
+                  <strong style={{ marginLeft: '1rem' }}>
+                    CorbynGreenwood
+                  </strong>
+                )}
               </Navbar.Brand>
-              <Navbar.Toggle aria-controls="navbarScroll" style={{margin: "auto", marginRight: 0}}/>
-              <Navbar.Collapse id="navbarScroll">
+              <Navbar.Toggle
+                aria-controls='navbarScroll'
+                style={{ margin: 'auto', marginRight: 0 }}
+              />
+              <Navbar.Collapse id='navbarScroll'>
                 <Nav
-                  className="my-2 my-lg-0"
-                  style={{margin: "auto", marginRight: 0}}
-                >
+                  className='my-2 my-lg-0'
+                  style={{ margin: 'auto', marginRight: 0 }}>
                   <Nav.Link href='/Projects'>Projects</Nav.Link>
                   <Nav.Link href='/About'>About</Nav.Link>
                   <Nav.Link href='/Contact'>Contact</Nav.Link>
-                  {
-                    props.isLoggedIn ?
-                      <NavDropdown 
-                        title={username}
-                        className="specialLinkStyle"
-                      >
-                        <NavDropdown.Item disabled>Admin Portal</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item style={{color: "red"}} onClick={props.signoutCallBack}>
-                          Logout
-                        </NavDropdown.Item>
-                      </NavDropdown>
-                    :
-                      <Nav.Link onClick={props.loginCallBack}>Login</Nav.Link>
-                  }
+                  {props.isLoggedIn ? (
+                    <NavDropdown title={username} className='specialLinkStyle'>
+                      <NavDropdown.Item disabled>Admin Portal</NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item
+                        style={{ color: 'red' }}
+                        onClick={props.signoutCallBack}>
+                        Logout
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  ) : (
+                    <Nav.Link onClick={props.loginCallBack}>Login</Nav.Link>
+                  )}
                 </Nav>
               </Navbar.Collapse>
             </Container>
           </Container>
         </Navbar>
       </>
-    )
-  }
+    );
+  };
 
   // Render
   if (is1000px) return renderCollapsableNavBar();

@@ -1,6 +1,8 @@
 import {
-  AnyAction, applyMiddleware,
-  configureStore, Store
+  AnyAction,
+  applyMiddleware,
+  configureStore,
+  Store,
 } from '@reduxjs/toolkit';
 import { State } from '@src/models/State';
 import { Dispatch } from 'react';
@@ -15,4 +17,3 @@ const store: Store<State, any> & { dispatch: Dispatch<AnyAction> } =
   });
 
 export { store };
-

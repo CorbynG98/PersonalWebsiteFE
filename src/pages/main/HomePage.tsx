@@ -7,25 +7,34 @@ export default function HomePage() {
   return (
     <React.Fragment>
       <div className='containerStyle'>
-        <Container style={{alignItems: "center", display: "flex", flexDirection: "column"}}>
-          <div className="meContainer">
-            <div className="mePhoto">
-              <img src="https://storage.googleapis.com/public_images_ctg/hopefully-square.jpg" className="mePhoto"></img>
+        <Container
+          style={{
+            alignItems: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+          }}>
+          <div className='meContainer'>
+            <div className='mePhoto'>
+              <img
+                src='https://storage.googleapis.com/public_images_ctg/hopefully-square.jpg'
+                className='mePhoto'></img>
             </div>
           </div>
-          <div className="hello">
-            <h2 style={{fontWeight: "bold", textAlign: "center"}}>Hello People</h2>
+          <div className='hello'>
+            <h2 style={{ fontWeight: 'bold', textAlign: 'center' }}>
+              Hello People
+            </h2>
           </div>
           <Typed
             strings={["I'm Corbyn Greenwood! ^^ Thats me!"]}
-            cursorChar="_" 
+            cursorChar='_'
             typeSpeed={40}
-            className="typedStyles"
+            className='typedStyles'
           />
-          <div className="smallBlurb" style={{margin: "auto"}}>
-            <span className="blurb-p">Software Engineer</span>&nbsp;|&nbsp;
-            <span className="blurb-p">Developer</span>&nbsp;|&nbsp;
-            <span className="blurb-p">Designer</span>
+          <div className='smallBlurb' style={{ margin: 'auto' }}>
+            <span className='blurb-p'>Software Engineer</span>&nbsp;|&nbsp;
+            <span className='blurb-p'>Developer</span>&nbsp;|&nbsp;
+            <span className='blurb-p'>Designer</span>
           </div>
         </Container>
       </div>

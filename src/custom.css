@@ -80,23 +80,26 @@ body::after {
   margin-bottom: 0.1rem !important;
 }
 
-.linkStyle:hover, .iconLinkStyle:hover {
+.linkStyle:hover,
+.iconLinkStyle:hover {
   color: white;
   cursor: pointer;
 }
 
-.specialLinkStyle, .specialLinkStyle > a {
+.specialLinkStyle,
+.specialLinkStyle > a {
   text-decoration: none;
   color: rgb(166, 170, 191);
   transition: 0.3s;
 }
 
-.specialLinkStyle:hover, .specialLinkStyle > a:hover,
-.specialLinkStyle:focus, .specialLinkStyle > a:focus {
+.specialLinkStyle:hover,
+.specialLinkStyle > a:hover,
+.specialLinkStyle:focus,
+.specialLinkStyle > a:focus {
   text-decoration: none;
   color: white;
 }
-
 
 .iconLinkStyle {
   text-decoration: none;
@@ -195,7 +198,6 @@ body::after {
   color: #55cc69;
 }
 /* ================================ */
-
 
 /* ========== Contact Page ========== */
 .page-content {

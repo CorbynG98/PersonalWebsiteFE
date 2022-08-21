@@ -14,7 +14,9 @@ export default function UnderConstructionPage() {
           <p style={{ color: 'white', fontSize: '3rem', paddingTop: '1rem' }}>
             <strong>This pages appears to be under construction!</strong>
           </p>
-          <p style={{ color: 'white' }}>Check back again soon to see if this has changed!</p>
+          <p style={{ color: 'white' }}>
+            Check back again soon to see if this has changed!
+          </p>
           <div
             style={{
               display: 'flex',
