@@ -26,6 +26,7 @@ const NavBarComponent = (props: Props) => {
   }, []);
 
   const is1000px = useMediaQuery({ query: '(max-width: 991px)' });
+  const is576px = useMediaQuery({ query: '(max-width: 576px)' });
   const is360px = useMediaQuery({ query: '(max-width: 360px)' });
 
   const renderPrimaryNavbar = () => {
@@ -137,32 +138,36 @@ const NavBarComponent = (props: Props) => {
           expand='sm'
           className={'m-auto navSemiBackground'}>
           <Container style={{ paddingTop: '0.3rem', paddingBottom: '0.3rem' }}>
-            <Container className='p-0 m-0' style={{ display: 'flex' }}>
-              <Navbar.Brand
-                href='/Home'
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <img
-                  alt=''
-                  src='https://storage.googleapis.com/public_images_ctg/icon-512x512.png'
-                  width='40'
-                  height='40'
-                  className='d-inline-block align-top'
-                  style={{ borderRadius: '15%' }}
-                />{' '}
-                {!is360px && (
-                  <strong style={{ marginLeft: '1rem' }}>
-                    CorbynGreenwood
-                  </strong>
-                )}
-              </Navbar.Brand>
-              <Navbar.Toggle
-                aria-controls='navbarScroll'
-                style={{ margin: 'auto', marginRight: 0 }}
-              />
+            <Container
+              className='p-0 m-0'
+              style={{ display: `${is576px ? 'block' : 'flex'}` }}>
+              <div style={{ display: 'flex' }}>
+                <Navbar.Brand
+                  href='/Home'
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <img
+                    alt=''
+                    src='https://storage.googleapis.com/public_images_ctg/icon-512x512.png'
+                    width='40'
+                    height='40'
+                    className='d-inline-block align-top'
+                    style={{ borderRadius: '15%' }}
+                  />{' '}
+                  {!is360px && (
+                    <strong style={{ marginLeft: '1rem' }}>
+                      CorbynGreenwood
+                    </strong>
+                  )}
+                </Navbar.Brand>
+                <Navbar.Toggle
+                  aria-controls='navbarScroll'
+                  style={{ margin: 'auto', marginRight: 0 }}
+                />
+              </div>
               <Navbar.Collapse id='navbarScroll'>
                 <Nav
                   className='my-2 my-lg-0'

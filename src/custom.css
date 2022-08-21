@@ -26,7 +26,7 @@ body::after {
   border-bottom-width: 1px;
   border-bottom-style: solid;
   backdrop-filter: blur(18px);
-  height: 5rem;
+  height: auto;
 }
 /* =================================== */
 
