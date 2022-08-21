@@ -27,7 +27,7 @@ export default function UnderConstructionPage() {
             <Button
               variant='secondary'
               onClick={() => window.history.back()}
-              style={{ height: '2.5rem' }}>
+              style={{ height: '2.5rem', marginRight: '1rem' }}>
               ← Return
             </Button>
             <Nav.Link href='/Home'>

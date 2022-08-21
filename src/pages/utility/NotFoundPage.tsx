@@ -1,7 +1,7 @@
-import React from 'react';
-import { Container, Button, Nav } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSkullCrossbones } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
+import { Button, Container, Nav } from 'react-bootstrap';
 
 export default function NotFoundPage() {
   // Build UI
@@ -24,7 +24,7 @@ export default function NotFoundPage() {
             <Button
               variant='secondary'
               onClick={() => window.history.back()}
-              style={{ height: '2.5rem' }}>
+              style={{ height: '2.5rem', marginRight: '1rem' }}>
               ← Return
             </Button>
             <Nav.Link href='/Home'>

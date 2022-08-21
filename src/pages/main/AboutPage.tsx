@@ -141,8 +141,7 @@ export default function AboutPage() {
                   <h3 className='subTitle'>About You</h3>
                   <p
                     className='contentText aboutYouShow specialLinkStyle'
-                    onClick={toggleAboutYouData}
-                  >
+                    onClick={toggleAboutYouData}>
                     Wait a second, what?
                   </p>
                   {aboutYouShowing && (
