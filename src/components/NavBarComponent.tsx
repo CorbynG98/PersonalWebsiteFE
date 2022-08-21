@@ -82,7 +82,7 @@ const NavBarComponent = (props: Props) => {
                     alignItems: 'center',
                   }}>
                   {props.isLoggedIn ? (
-                    <NavDropdown title={username} className='specialLinkStyle'>
+                    <NavDropdown title={username} className='specialLinkStyle' style={{paddingRight: "0.8rem"}}>
                       <NavDropdown.Item disabled>Admin Portal</NavDropdown.Item>
                       <NavDropdown.Divider />
                       <NavDropdown.Item
