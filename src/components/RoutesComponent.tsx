@@ -1,22 +1,25 @@
-import { Routes, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 // CORE PAGES =====================
-import HomePage from '../pages/HomePage';
-import RoadmapPage from '../pages/RoadmapPage';
-import FAQPage from '../pages/FAQPage';
-import LicensePage from '../pages/LicensePage';
-import ChangelogPage from '../pages/ChangelogPage';
+import AboutPage from '@src/pages/main/AboutPage';
+// import ProjectsPage from '@src/pages/main/ProjectsPage';
+import ChangelogPage from '@src/pages/utility/ChangelogPage';
+import LicensePage from '@src/pages/utility/LicensePage';
+import HomePage from '../pages/main/HomePage';
 // UTILITY PAGES ===================
-import NotFoundPage from '../pages/NotFoundPage';
+import ContactPage from '@src/pages/main/ContactPage';
+import NotFoundPage from '@src/pages/utility/NotFoundPage';
+import UnderConstructionPage from '@src/pages/utility/UnderConstructionPage';
 
 const RoutesComponent = () => {
   return (
     <Routes>
       <Route path='/' element={<HomePage />} />
       <Route path='/Home' element={<HomePage />} />
-      <Route path='/Roadmap' element={<RoadmapPage />} />
-      <Route path='/FAQ' element={<FAQPage />} />
-      <Route path='/Changelog' element={<ChangelogPage />} />
+      <Route path='/Projects' element={<UnderConstructionPage />} />
+      <Route path='/About' element={<AboutPage />} />
+      <Route path='/Contact' element={<ContactPage />} />
       <Route path='/License' element={<LicensePage />} />
+      <Route path='/Changelog' element={<ChangelogPage />} />
       <Route path='*' element={<NotFoundPage />} />
     </Routes>
   );
