@@ -18,12 +18,12 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-    - name: Token Replacement
-      uses: microsoft/variable-substitution@v1 
-      with:
-          files: '**/appsettings.json'
-      env:
-          "apiUrl": ${{ secrets.API_URL }}
+      - name: Token Replacement
+        uses: microsoft/variable-substitution@v1 
+        with:
+            files: '**/appsettings.json'
+        env:
+            "apiUrl": ${{ secrets.API_URL }}
 
       - name: Set Creds
         run: git config user.name "CorbynG98" && git config user.email "corbyn.greenwood.98@gmail.com"
