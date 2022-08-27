@@ -209,7 +209,7 @@ const NavBarComponent = (props: Props) => {
                       </NavDropdown.Item>
                     </NavDropdown>
                   ) : (
-                    <Nav.Link onClick={props.loginCallBack}>Login</Nav.Link>
+                    <Nav.Link onClick={props.loginCallBack} className='specialLinkStyle'>Login</Nav.Link>
                   )}
                 </Nav>
               </Navbar.Collapse>
