@@ -1,10 +1,11 @@
-import { faCode, faGlobe, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faCode, faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GetProjects } from '@src/apiclient/apiclient';
 import { ProjectData } from '@src/models/ProjectData';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Container, Spinner, Table } from 'react-bootstrap';
+import { useMediaQuery } from 'react-responsive';
 import { useSearchParams } from 'react-router-dom';
 
 export default function ProjectsPage() {
@@ -12,6 +13,9 @@ export default function ProjectsPage() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [projects, setProjects] = useState<ProjectData[]>([] as ProjectData[]);
   const [isSimpleMode, setIsSimpleMode] = useState<boolean>(true);
+
+  const is1000px = useMediaQuery({ query: '(max-width: 991px)' });
+  const is576px = useMediaQuery({ query: '(max-width: 576px)' });
 
   useEffect(() => {
     let cancelToken = axios.CancelToken.source();
@@ -33,82 +37,25 @@ export default function ProjectsPage() {
     setIsSimpleMode((prev) => !prev);
   };
 
-  const renderSimpleMode = () => {
+  const simpleRenderer = () => {
     return (
       <Table striped bordered hover variant='dark'>
         <thead>
           <tr>
             <th>Title</th>
-            <th>Technology</th>
-            <th>Stars</th>
-            <th>Source</th>
-            <th>Live</th>
+            {!is1000px && <th>Technology</th>}
+            {!is576px && <th>Source</th>}
+            {!is576px && <th>Live</th>}
           </tr>
         </thead>
         <tbody>
           {projects != null && projects.length >= 1 ? (
             <>
-              {projects.map((project, i) => {
-                return (
-                  <tr>
-                    <td style={{ verticalAlign: 'middle' }}>
-                      <p
-                        style={{
-                          margin: 'auto',
-                          fontSize: '1.5rem',
-                          fontWeight: 'bold',
-                          color: '#55cc69',
-                        }}>
-                        {project.name}
-                      </p>
-                      <p style={{ margin: 'auto' }}>{project.description}</p>
-                    </td>
-                    <td style={{ verticalAlign: 'middle' }}>
-                      {project.techStack?.join(', ')}
-                    </td>
-                    <td style={{ verticalAlign: 'middle' }}>
-                      <div style={{ display: 'flex' }}>
-                        <FontAwesomeIcon
-                          icon={faStar}
-                          size='2x'
-                          color='yellow'
-                        />
-                        <p style={{ margin: 'auto', marginLeft: '0.5rem' }}>
-                          x {project.stars}
-                        </p>
-                      </div>
-                    </td>
-                    <td
-                      style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                      {project.source != null ? (
-                        <a href='source_code_link'>
-                          <FontAwesomeIcon
-                            icon={faCode}
-                            size='2x'
-                            color='white'
-                          />
-                        </a>
-                      ) : (
-                        <FontAwesomeIcon icon={faCode} size='2x' color='red' />
-                      )}
-                    </td>
-                    <td
-                      style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                      {project.liveUrl != null ? (
-                        <a href='source_code_link'>
-                          <FontAwesomeIcon
-                            icon={faGlobe}
-                            size='2x'
-                            color='white'
-                          />
-                        </a>
-                      ) : (
-                        <FontAwesomeIcon icon={faGlobe} size='2x' color='red' />
-                      )}
-                    </td>
-                  </tr>
-                );
-              })}
+              {is576px
+                ? renderSimpleModeVerySmall()
+                : is1000px
+                ? renderSimpleModeSmall()
+                : renderSimpleMode()}
             </>
           ) : (
             <>
@@ -122,7 +69,170 @@ export default function ProjectsPage() {
     );
   };
 
-  const renderAdvancedMode = () => {
+  const renderSimpleMode = () => {
+    return (
+      <>
+        {projects.map((project, i) => {
+          return (
+            <tr>
+              <td style={{ verticalAlign: 'middle' }}>
+                <p
+                  style={{
+                    margin: 'auto',
+                    fontSize: '1.5rem',
+                    fontWeight: 'bold',
+                    color: '#55cc69',
+                  }}>
+                  {project.name}
+                </p>
+                <p style={{ margin: 'auto' }}>{project.description}</p>
+              </td>
+              <td style={{ verticalAlign: 'middle' }}>
+                {project.techStack?.join(', ')}
+              </td>
+              <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                {project.source != null ? (
+                  <a href='source_code_link'>
+                    <FontAwesomeIcon icon={faCode} size='2x' color='white' />
+                  </a>
+                ) : (
+                  <FontAwesomeIcon icon={faCode} size='2x' color='red' />
+                )}
+              </td>
+              <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                {project.liveUrl != null ? (
+                  <a href='source_code_link'>
+                    <FontAwesomeIcon icon={faGlobe} size='2x' color='white' />
+                  </a>
+                ) : (
+                  <FontAwesomeIcon icon={faGlobe} size='2x' color='red' />
+                )}
+              </td>
+            </tr>
+          );
+        })}
+      </>
+    );
+  };
+
+  const renderSimpleModeSmall = () => {
+    return (
+      <>
+        {projects.map((project, i) => {
+          return (
+            <tr>
+              <td style={{ verticalAlign: 'middle' }}>
+                <p
+                  style={{
+                    margin: 'auto',
+                    fontSize: '1.5rem',
+                    fontWeight: 'bold',
+                    color: '#55cc69',
+                  }}>
+                  {project.name}
+                </p>
+                <p style={{ margin: 'auto' }}>{project.description}</p>
+                <p
+                  style={{
+                    margin: 'auto',
+                    color: '#55cc69',
+                    fontWeight: 'bold',
+                  }}>
+                  {project.techStack?.join(', ')}
+                </p>
+              </td>
+              <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                {project.source != null ? (
+                  <a href='source_code_link'>
+                    <FontAwesomeIcon icon={faCode} size='2x' color='white' />
+                  </a>
+                ) : (
+                  <FontAwesomeIcon icon={faCode} size='2x' color='red' />
+                )}
+              </td>
+              <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                {project.liveUrl != null ? (
+                  <a href='source_code_link'>
+                    <FontAwesomeIcon icon={faGlobe} size='2x' color='white' />
+                  </a>
+                ) : (
+                  <FontAwesomeIcon icon={faGlobe} size='2x' color='red' />
+                )}
+              </td>
+            </tr>
+          );
+        })}
+      </>
+    );
+  };
+
+  const renderSimpleModeVerySmall = () => {
+    return (
+      <>
+        {projects.map((project, i) => {
+          return (
+            <tr>
+              <td style={{ verticalAlign: 'middle' }}>
+                <p
+                  style={{
+                    margin: 'auto',
+                    fontSize: '1.5rem',
+                    fontWeight: 'bold',
+                    color: '#55cc69',
+                  }}>
+                  {project.name}
+                </p>
+                <p style={{ margin: 'auto' }}>{project.description}</p>
+                <div style={{ display: 'flex', paddingTop: '0.3rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    {project.liveUrl != null ? (
+                      <a href='source_code_link'>
+                        <FontAwesomeIcon
+                          icon={faGlobe}
+                          size='2x'
+                          color='white'
+                        />
+                      </a>
+                    ) : (
+                      <FontAwesomeIcon icon={faGlobe} size='2x' color='red' />
+                    )}
+                    {project.source != null ? (
+                      <a href='source_code_link'>
+                        <FontAwesomeIcon
+                          icon={faCode}
+                          size='2x'
+                          color='white'
+                          style={{ marginLeft: '1.5rem' }}
+                        />
+                      </a>
+                    ) : (
+                      <FontAwesomeIcon
+                        icon={faCode}
+                        size='2x'
+                        color='red'
+                        style={{ marginLeft: '1.5rem' }}
+                      />
+                    )}
+                  </div>
+                  <p
+                    style={{
+                      margin: 'auto 0 auto 0',
+                      color: '#55cc69',
+                      fontWeight: 'bold',
+                      marginLeft: '1.5rem',
+                    }}>
+                    {project.techStack?.join(', ')}
+                  </p>
+                </div>
+              </td>
+            </tr>
+          );
+        })}
+      </>
+    );
+  };
+
+  const advancedRenderer = () => {
     return (
       <p style={{ color: 'white' }}>
         Advanced mode is still under construction
@@ -151,7 +261,7 @@ export default function ProjectsPage() {
               style={{ float: 'right', marginBottom: '1rem' }}>
               {isSimpleMode ? 'Advanced mode' : 'Simple mode'}
             </Button>
-            {isSimpleMode ? renderSimpleMode() : renderAdvancedMode()}
+            {isSimpleMode ? simpleRenderer() : advancedRenderer()}
           </>
         )}
       </Container>

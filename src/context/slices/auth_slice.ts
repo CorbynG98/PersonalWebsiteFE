@@ -56,8 +56,12 @@ export const signOut =
     cancelToken: CancelTokenSource | undefined | null = null,
   ): ThunkAction<void, State, unknown, Action> =>
   async (dispatch) => {
+    let cookie = await getCookie('cgAuthData');
+    if (cookie == null) return; // Don't logout if we aren't logged in?
     // Do some stuff here to revoke the access token api side
-    await Signout(cancelToken);
+    await Signout(cancelToken).catch(() => {
+      /* Ignoring this, signout not relevant for failure, just remove cookie anyway */
+    });
     await removeCookie('cgAuthData');
     dispatch({ type: 'SIGN_OUT' });
   };

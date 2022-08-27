@@ -39,3 +39,21 @@ export const Signout = async (
     return Promise.reject(err);
   }
 };
+
+export const CheckAuth = async (
+  cancelToken: CancelTokenSource | undefined | null = null,
+) => {
+  const endpoint = '/user/verifysession';
+  try {
+    var response = await axios.post<null, AxiosResponse<boolean>>(
+      endpoint,
+      null,
+      {
+        cancelToken: cancelToken?.token,
+      },
+    );
+    return Promise.resolve(response.data);
+  } catch (err) {
+    return Promise.reject(err);
+  }
+};

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { initBaseData } from './context/slices/auth_slice';
 import { store } from './context/store';
+import ErrorBoundary from './pages/utility/ErrorBoundry';
 
 export default function App() {
   useEffect(() => {
@@ -18,8 +19,10 @@ export default function App() {
   }, []);
 
   return (
-    <Provider store={store}>
-      <Renderer />
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <Renderer />
+      </Provider>
+    </ErrorBoundary>
   );
 }

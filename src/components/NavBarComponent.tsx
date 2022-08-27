@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { Col, Container, Nav, Navbar, NavDropdown, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
+import { Link } from 'react-router-dom';
 
 type Props = {
   isLoggedIn: boolean;
@@ -43,7 +44,8 @@ const NavBarComponent = (props: Props) => {
             <Row style={{ display: 'flex', alignItems: 'center' }}>
               <Col md='2'>
                 <Navbar.Brand
-                  href='/Home'
+                  as={Link}
+                  to='/Home'
                   style={{
                     display: 'flex',
                     justifyContent: 'left',
@@ -65,17 +67,20 @@ const NavBarComponent = (props: Props) => {
               <Col md='8'>
                 <Nav style={{ justifyContent: 'center' }}>
                   <Nav.Link
-                    href='/Projects'
+                    as={Link}
+                    to='/Projects'
                     className='linkStyle specialLinkStyle'>
                     Projects
                   </Nav.Link>
                   <Nav.Link
-                    href='/About'
+                    as={Link}
+                    to='/About'
                     className='linkStyle specialLinkStyle'>
                     About
                   </Nav.Link>
                   <Nav.Link
-                    href='/Contact'
+                    as={Link}
+                    to='/Contact'
                     className='linkStyle specialLinkStyle'>
                     Contact
                   </Nav.Link>

@@ -1,13 +1,16 @@
 import FooterComponent from '@components/FooterComponent';
 import NavBarComponent from '@components/NavBarComponent';
 import RoutesComponent from '@components/RoutesComponent';
+import { CheckAuth } from '@src/apiclient/apiclient';
 import { signIn, signOut } from '@src/context/slices/auth_slice';
 import { store } from '@src/context/store';
 import { LoginData } from '@src/models/LoginData';
 import { State } from '@src/models/State';
+import { getCookie } from '@src/storageclient/storageclient';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Notyf } from 'notyf';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Form, Modal, Spinner } from 'react-bootstrap';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
@@ -29,6 +32,25 @@ export const Renderer = () => {
   >(null);
   // Selector stuff
   const isLoggedIn = useSelector((state: State) => state.isLoggedIn);
+
+  // UseEffect to check auth and signout if need be
+  useEffect(() => {
+    let cancelToken = axios.CancelToken.source();
+    (async () => {
+      let auth = await getCookie('cgAuthData');
+      if (auth != null && auth.token != null) {
+        CheckAuth(cancelToken).then((result) => {
+          if (!result) {
+            // Run logout function
+            store.dispatch({ type: 'SIGN_OUT' });
+          }
+        });
+      }
+    })();
+    return () => {
+      cancelToken.cancel();
+    };
+  }, []);
 
   const attemptLogin = async (event: any) => {
     if (loginLoading) return;
