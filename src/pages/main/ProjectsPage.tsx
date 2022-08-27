@@ -92,7 +92,7 @@ export default function ProjectsPage() {
               </td>
               <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                 {project.source != null ? (
-                  <a href='source_code_link'>
+                  <a href={project.source}>
                     <FontAwesomeIcon icon={faCode} size='2x' color='white' />
                   </a>
                 ) : (
@@ -101,7 +101,7 @@ export default function ProjectsPage() {
               </td>
               <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                 {project.liveUrl != null ? (
-                  <a href='source_code_link'>
+                  <a href={project.liveUrl}>
                     <FontAwesomeIcon icon={faGlobe} size='2x' color='white' />
                   </a>
                 ) : (
@@ -143,7 +143,7 @@ export default function ProjectsPage() {
               </td>
               <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                 {project.source != null ? (
-                  <a href='source_code_link'>
+                  <a href={project.source}>
                     <FontAwesomeIcon icon={faCode} size='2x' color='white' />
                   </a>
                 ) : (
@@ -152,7 +152,7 @@ export default function ProjectsPage() {
               </td>
               <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                 {project.liveUrl != null ? (
-                  <a href='source_code_link'>
+                  <a href={project.liveUrl}>
                     <FontAwesomeIcon icon={faGlobe} size='2x' color='white' />
                   </a>
                 ) : (
@@ -186,7 +186,7 @@ export default function ProjectsPage() {
                 <div style={{ display: 'flex', paddingTop: '0.3rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center' }}>
                     {project.liveUrl != null ? (
-                      <a href='source_code_link'>
+                      <a href={project.liveUrl}>
                         <FontAwesomeIcon
                           icon={faGlobe}
                           size='2x'
@@ -197,7 +197,7 @@ export default function ProjectsPage() {
                       <FontAwesomeIcon icon={faGlobe} size='2x' color='red' />
                     )}
                     {project.source != null ? (
-                      <a href='source_code_link'>
+                      <a href={project.source}>
                         <FontAwesomeIcon
                           icon={faCode}
                           size='2x'
