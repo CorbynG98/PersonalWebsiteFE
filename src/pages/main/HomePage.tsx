@@ -11,7 +11,7 @@ export default function HomePage() {
           alignItems: 'center',
           display: 'flex',
           flexDirection: 'column',
-          marginTop: "2rem"
+          marginTop: '2rem',
         }}>
         <div className='meContainer'>
           <div className='mePhoto'>

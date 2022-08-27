@@ -40,7 +40,7 @@ export default function ContactPage() {
   // Build UI
   return (
     <React.Fragment>
-      <Container style={{marginTop: "2rem"}}>
+      <Container style={{ marginTop: '2rem' }}>
         <div className='textContainer'>
           <h2 className='mainTitle'>Get in touch!</h2>
           <p className='subTitle' style={{ color: 'white' }}>
@@ -59,7 +59,10 @@ export default function ContactPage() {
               placeholder='Full name'
               value={emailData.fullname ?? ''}
               onChange={(event) =>
-                setEmailData((prev) => ({ ...prev, fullname: event.target.value }))
+                setEmailData((prev) => ({
+                  ...prev,
+                  fullname: event.target.value,
+                }))
               }
               required
               minLength={3}

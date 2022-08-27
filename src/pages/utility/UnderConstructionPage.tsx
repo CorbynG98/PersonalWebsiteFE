@@ -7,7 +7,7 @@ export default function UnderConstructionPage() {
   // Build UI
   return (
     <React.Fragment>
-      <Container style={{ textAlign: 'center', marginTop: "2rem" }}>
+      <Container style={{ textAlign: 'center', marginTop: '2rem' }}>
         <FontAwesomeIcon icon={faWrench} size='10x' color='white' />
         <p style={{ color: 'white', fontSize: '2.5rem', paddingTop: '1rem' }}>
           <strong>This page appears to be under construction!</strong>

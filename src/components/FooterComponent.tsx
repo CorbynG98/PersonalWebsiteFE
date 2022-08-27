@@ -75,7 +75,9 @@ const FooterComponent = () => {
                     }}>
                     <strong>ABOUT</strong>
                   </p>
-                  <a href='https://github.com/CorbynG98/PersonalWebsiteFE/commits/main' className='p-0 m-0 linkStyle'>
+                  <a
+                    href='https://github.com/CorbynG98/PersonalWebsiteFE/commits/main'
+                    className='p-0 m-0 linkStyle'>
                     Changelog
                   </a>
                   <Nav.Link href='/Blog' className='p-0 m-0 linkStyle' disabled>
@@ -95,7 +97,9 @@ const FooterComponent = () => {
                     }}>
                     <strong>ORG</strong>
                   </p>
-                  <a href='https://github.com/CorbynG98/PersonalWebsiteFE/blob/main/LICENSE' className='p-0 m-0 linkStyle'>
+                  <a
+                    href='https://github.com/CorbynG98/PersonalWebsiteFE/blob/main/LICENSE'
+                    className='p-0 m-0 linkStyle'>
                     License
                   </a>
                   <Nav.Link
@@ -190,7 +194,9 @@ const FooterComponent = () => {
                   }}>
                   <strong>ABOUT</strong>
                 </p>
-                <a href='https://github.com/CorbynG98/PersonalWebsiteFE/commits/main' className='p-0 m-0 linkStyle'>
+                <a
+                  href='https://github.com/CorbynG98/PersonalWebsiteFE/commits/main'
+                  className='p-0 m-0 linkStyle'>
                   Changelog
                 </a>
                 <Nav.Link href='/Blog' className='p-0 m-0 linkStyle' disabled>
@@ -208,7 +214,9 @@ const FooterComponent = () => {
                   }}>
                   <strong>ORG</strong>
                 </p>
-                <a href='https://github.com/CorbynG98/PersonalWebsiteFE/blob/main/LICENSE' className='p-0 m-0 linkStyle'>
+                <a
+                  href='https://github.com/CorbynG98/PersonalWebsiteFE/blob/main/LICENSE'
+                  className='p-0 m-0 linkStyle'>
                   License
                 </a>
                 <Nav.Link href='/Terms' className='p-0 m-0 linkStyle' disabled>

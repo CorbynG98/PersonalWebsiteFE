@@ -64,13 +64,19 @@ const NavBarComponent = (props: Props) => {
               </Col>
               <Col md='8'>
                 <Nav style={{ justifyContent: 'center' }}>
-                  <Nav.Link href='/Projects' className='linkStyle specialLinkStyle'>
+                  <Nav.Link
+                    href='/Projects'
+                    className='linkStyle specialLinkStyle'>
                     Projects
                   </Nav.Link>
-                  <Nav.Link href='/About' className='linkStyle specialLinkStyle'>
+                  <Nav.Link
+                    href='/About'
+                    className='linkStyle specialLinkStyle'>
                     About
                   </Nav.Link>
-                  <Nav.Link href='/Contact' className='linkStyle specialLinkStyle'>
+                  <Nav.Link
+                    href='/Contact'
+                    className='linkStyle specialLinkStyle'>
                     Contact
                   </Nav.Link>
                 </Nav>
@@ -172,9 +178,21 @@ const NavBarComponent = (props: Props) => {
                 <Nav
                   className='my-2 my-lg-0'
                   style={{ margin: 'auto', marginRight: 0 }}>
-                  <Nav.Link href='/Projects' className='linkStyle specialLinkStyle'>Projects</Nav.Link>
-                  <Nav.Link href='/About' className='linkStyle specialLinkStyle'>About</Nav.Link>
-                  <Nav.Link href='/Contact' className='linkStyle specialLinkStyle'>Contact</Nav.Link>
+                  <Nav.Link
+                    href='/Projects'
+                    className='linkStyle specialLinkStyle'>
+                    Projects
+                  </Nav.Link>
+                  <Nav.Link
+                    href='/About'
+                    className='linkStyle specialLinkStyle'>
+                    About
+                  </Nav.Link>
+                  <Nav.Link
+                    href='/Contact'
+                    className='linkStyle specialLinkStyle'>
+                    Contact
+                  </Nav.Link>
                   {props.isLoggedIn ? (
                     <NavDropdown title={username} className='specialLinkStyle'>
                       <NavDropdown.Item disabled>Admin Portal</NavDropdown.Item>
