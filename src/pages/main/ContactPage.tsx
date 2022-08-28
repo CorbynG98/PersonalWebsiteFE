@@ -11,7 +11,7 @@ export default function ContactPage() {
   });
 
   const [emailData, setEmailData] = useState<EmailData>({} as EmailData);
-  const [formValidated, setFormValidated] = useState<boolean>(true);
+  const [formValidated, setFormValidated] = useState<boolean>(false);
   const [sendEmailLoading, setSendEmailLoading] = useState<boolean>(false);
 
   const attemptEmail = (event: any) => {
@@ -68,7 +68,7 @@ export default function ContactPage() {
               minLength={3}
             />
             <Form.Control.Feedback type='invalid'>
-              Required and 3 or more characters
+              3 or more characters required
             </Form.Control.Feedback>
             <Form.Control.Feedback type='valid'>
               Looks good!
@@ -94,7 +94,7 @@ export default function ContactPage() {
               minLength={5}
             />
             <Form.Control.Feedback type='invalid'>
-              Required and 5 or more characters
+              5 or more characters required
             </Form.Control.Feedback>
             <Form.Control.Feedback type='valid'>
               Looks good!
@@ -118,7 +118,7 @@ export default function ContactPage() {
               minLength={15}
             />
             <Form.Control.Feedback type='invalid'>
-              Required and 15 or more characters
+              15 or more characters required
             </Form.Control.Feedback>
             <Form.Control.Feedback type='valid'>
               Looks good!
