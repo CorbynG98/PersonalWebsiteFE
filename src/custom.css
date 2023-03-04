@@ -1,0 +1,377 @@
+/* ========== CORE TAG STYLES ========== */
+html,
+body {
+  background: radial-gradient(#262626, black);
+  position: relative;
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* ===================================== */
+
+/* ========== PAGE CONTAINER STYLES ========== */
+#contactPage, #aboutPage, #projectsPage {
+  height: 100vh;
+  padding: 0;
+  padding-bottom: 4rem
+}
+
+@media screen and (max-width: 1100px) {
+  #contactPage, #aboutPage, #projectsPage {
+    height: auto;
+    padding: 0;
+  }
+}
+
+/* =========================================== */
+
+/* ========== HOMEPAGE STYLES ========== */
+.homePageNavContainer {
+  display: grid;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.homePageNavContainer div {
+  transition: all 0.6s ease;
+  background-size: cover;
+}
+
+.title {
+  height: 70vh;
+  width: 70vw;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  background-color: #55cc69;
+  display: flex;
+}
+
+.projects {
+  height: 70vh;
+  width: 30vw;
+  border-left: 1px solid white;
+  border-bottom: 1px solid white;
+  display: flex;
+}
+
+.connect {
+  height: 30vh;
+  width: 30vw;
+  border-left: 1px solid white;
+  border-top: 1px solid white;
+  display: flex;
+}
+
+.about {
+  height: 30vh;
+  width: 70vw;
+  border-right: 1px solid white;
+  border-top: 1px solid white;
+  display: flex;
+}
+
+.linkItem {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* ===================================== */
+
+/* ========== NAVBAR STYLES ========== */
+.linkStyle, .linkStyleBackgroundHover, .notActiveLink {
+  background-color: transparent;
+  transition: all 0.6s ease;
+}
+
+.linkStyle:hover, .linkStyleBackgroundHover:hover, .activeLink {
+  background-color: #55cc69 !important;
+}
+
+.topNavActiveLink {
+  color: white;
+}
+
+.navSemiBackground {
+  background-color: rgba(13, 14, 17, .8);
+  border-color: #20222d;
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.my-2 {
+  margin-bottom: 0 !important;
+}
+
+/* =================================== */
+
+/* ========== FOOTER STYLES ========== */
+.footerBackgroundStyle {
+  background-color: rgba(13, 14, 17, 0.8);
+  border-color: rgb(32, 34, 45);
+  border-top-width: 1px;
+  border-top-style: solid;
+  backdrop-filter: blur(18px);
+}
+
+.footerPositionStyle {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 15rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+@media screen and (max-width: 991px) {
+  .footerPositionStyle {
+    height: 24rem;
+  }
+
+  body::after {
+    height: 28rem;
+    /* Set same as footer's height */
+  }
+}
+
+.colContainerStyle {
+  display: flex;
+  flex-direction: column;
+  height: 11rem;
+  width: 100%;
+}
+
+/* =================================== */
+
+/* ========== Container Styles ========== */
+.containerStyle {
+  max-height: 100%;
+  padding-top: 5rem;
+}
+
+/* ====================================== */
+
+/* ========== Custom Styles ========== */
+.iconLinkStyle {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.iconLinkStyle:hover {
+  color: #55cc69;
+}
+
+/* =================================== */
+
+/* ========== Home Page Styles ========== */
+.meContainer {
+  justify-self: center;
+  padding: 3em;
+  padding-top: 0;
+}
+
+.mePhoto {
+  margin: auto;
+  height: 16rem;
+  width: 16rem;
+  border-radius: 50%;
+  display: flex;
+  box-shadow: 0 1em 1.5em 0 rgba(0, 0, 0, 0.1), 0 1em 2em 0 rgba(0, 0, 0, 0.2);
+  transition: all 0.6s ease;
+}
+
+.hello {
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding-bottom: 1em;
+  transition: all 0.6s ease;
+}
+
+.smallBlurb {
+  margin: auto;
+  text-align: center;
+  color: white;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.blurb-p {
+  transition: all 0.6s ease;
+}
+
+.blurb-p:nth-child(even) {
+  color: #55cc69;
+}
+
+.overridePrimaryColour {
+  color: black !important;
+}
+
+.overridePrimaryColourWhite {
+  color: white !important;
+}
+
+.typedStyles {
+  color: #cfcfcf;
+  font-size: 1em;
+  font-weight: bold;
+  padding-bottom: 0.5em;
+  text-align: center;
+  margin: auto;
+  transition: 0.6s ease;
+}
+
+/* ========== About Page ========== */
+.page-content {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.aboutBox {
+  width: 100%;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 0.3rem;
+}
+
+.textContainer {
+  margin: auto 1rem auto 1rem;
+}
+
+.mainTitle {
+  font-weight: 400;
+  text-align: left;
+  font-size: 3rem;
+  color: white;
+  margin: 2rem auto 2rem auto;
+}
+
+.subTitle {
+  text-align: left;
+  font-weight: 400;
+  color: #55cc69;
+  margin: 0 auto 1rem auto;
+}
+
+.contentText {
+  text-align: left;
+  color: white;
+}
+
+.aboutYouShow {
+  text-decoration: none;
+  color: #ccc;
+  transition: 200ms;
+}
+
+.aboutYouShow:hover {
+  color: #eee;
+  cursor: pointer;
+}
+
+.theShort,
+.technologyInformation {
+  margin: 0 auto 2rem auto;
+}
+
+.theLong {
+  margin: 0 auto 0 auto;
+}
+
+.smallPad {
+  padding-top: 1rem;
+}
+
+.subsubTitle {
+  text-align: left;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #55cc69;
+}
+
+/* ================================ */
+
+/* ========== Contact Page ========== */
+.page-content {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.contactForm {
+  width: 100%;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 0.3rem;
+}
+
+.textContainer {
+  margin: auto 0.5rem auto 0;
+}
+
+.mainTitle {
+  text-align: left;
+  font-size: 2rem;
+  margin: 0 auto 1rem auto;
+  color: #55cc69;
+}
+
+.input-box {
+  padding: 0.5rem;
+  color: black;
+  background-color: white;
+}
+
+.input-box::placeholder {
+  transition: 0.1s;
+  color: #ccc;
+}
+
+.input-box:focus::placeholder {
+  color: #444;
+}
+
+.text-area {
+  min-height: 5rem !important;
+  max-height: 20rem;
+  height: auto;
+  overflow: auto;
+  transition: none;
+  resize: vertical;
+}
+
+.form-utility {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding-top: 0.5rem;
+}
+
+.error-message {
+  text-align: left;
+  padding-left: 1.5rem;
+  align-self: center;
+  margin: 0;
+}
+
+.button-container {
+  width: 100%;
+  height: 100%;
+}
+
+.submit-button {
+  width: 100%;
+  border-radius: 0.2rem;
+  background-color: #55cc69;
+  border-color: #55cc69;
+  height: 2.5rem;
+}
+
+.spinner-itself {
+  justify-self: center;
+  align-self: center;
+  margin: 0.25rem;
+}
+
+/* ================================== */
