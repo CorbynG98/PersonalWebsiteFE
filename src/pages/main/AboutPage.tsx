@@ -80,7 +80,7 @@ export default function AboutPage() {
   // Build UI
   return (
     <React.Fragment>
-      <Container style={{ paddingTop: '2rem' }} id="aboutPage">
+      <Container style={{ paddingTop: '2rem' }} id='aboutPage'>
         <div className='textContainer'>
           <div className='theShort'>
             <h3 className='subTitle'>Short Version</h3>

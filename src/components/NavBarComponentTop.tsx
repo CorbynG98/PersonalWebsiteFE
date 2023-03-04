@@ -11,24 +11,25 @@ const NavBarComponentTop = () => {
   const activeLink = useSelector((state: State) => state.activeLink);
   const mouseClickApplyActive = (id: string) => {
     store.dispatch(setActiveLink(id));
-  }
+  };
   const is1100px = useMediaQuery({ query: '(max-width: 1100px)' });
   const is575px = useMediaQuery({ query: '(max-width: 575px)' });
   const is360px = useMediaQuery({ query: '(max-width: 400px)' });
 
   useEffect(() => {
     var path = window.location.pathname;
-    var active = "";
-    if (path.toLowerCase().indexOf("home") != -1 || path == '/') active = "home";
-    if (path.toLowerCase().indexOf("projects") != -1) active = "projects";
-    if (path.toLowerCase().indexOf("about") != -1) active = "about";
-    if (path.toLowerCase().indexOf("contact") != -1) active = "connect";
+    var active = '';
+    if (path.toLowerCase().indexOf('home') != -1 || path == '/')
+      active = 'home';
+    if (path.toLowerCase().indexOf('projects') != -1) active = 'projects';
+    if (path.toLowerCase().indexOf('about') != -1) active = 'about';
+    if (path.toLowerCase().indexOf('contact') != -1) active = 'connect';
     store.dispatch(setActiveLink(active));
   });
 
   useEffect(() => {
-    console.log("ActiveLinkState", activeLink)
-  }, [activeLink])
+    console.log('ActiveLinkState', activeLink);
+  }, [activeLink]);
 
   const renderCollapsableNavBar = () => {
     return (
@@ -43,9 +44,15 @@ const NavBarComponentTop = () => {
             <Container
               className='p-0 m-0'
               style={{ display: `${is575px ? 'block' : 'flex'}` }}>
-              <div style={{ display: 'flex', paddingLeft: '1rem', paddingRight: '1rem', paddingBottom: '0.3rem' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  paddingLeft: '1rem',
+                  paddingRight: '1rem',
+                  paddingBottom: '0.3rem',
+                }}>
                 <Navbar.Brand
-                  onClick={() => mouseClickApplyActive("home")}
+                  onClick={() => mouseClickApplyActive('home')}
                   as={Link}
                   to='/Home'
                   style={{
@@ -75,29 +82,66 @@ const NavBarComponentTop = () => {
               <Navbar.Collapse id='navbarScroll'>
                 <Nav
                   className='my-2 my-lg-0'
-                  style={{ margin: 'auto', marginRight: 0, marginBottom: '0 !important' }}>
+                  style={{
+                    margin: 'auto',
+                    marginRight: 0,
+                    marginBottom: '0 !important',
+                  }}>
                   <Nav.Link
                     as={Link}
                     to='/Projects'
-                    onClick={() => mouseClickApplyActive("projects")}
-                    style={(is575px ? { textAlign: "center", borderTop: '2px solid white', borderBottom: '1px solid white', height: '3rem' } : {})}
-                    className={`linkStyleTopNav ${is575px ? 'linkStyleBackgroundHover' : ''} ${activeLink == "projects" ? `topNavActiveLink` : ''}`}>
+                    onClick={() => mouseClickApplyActive('projects')}
+                    style={
+                      is575px
+                        ? {
+                            textAlign: 'center',
+                            borderTop: '2px solid white',
+                            borderBottom: '1px solid white',
+                            height: '3rem',
+                          }
+                        : {}
+                    }
+                    className={`linkStyleTopNav ${
+                      is575px ? 'linkStyleBackgroundHover' : ''
+                    } ${activeLink == 'projects' ? `topNavActiveLink` : ''}`}>
                     PROJECTS
                   </Nav.Link>
                   <Nav.Link
                     as={Link}
                     to='/About'
-                    onClick={() => mouseClickApplyActive("about")}
-                    style={(is575px ? { textAlign: "center", borderTop: '1px solid white', borderBottom: '1px solid white', height: '3rem' } : {})}
-                    className={`linkStyleTopNav ${is575px ? 'linkStyleBackgroundHover' : ''} ${activeLink == "about" ? `topNavActiveLink` : ''}`}>
+                    onClick={() => mouseClickApplyActive('about')}
+                    style={
+                      is575px
+                        ? {
+                            textAlign: 'center',
+                            borderTop: '1px solid white',
+                            borderBottom: '1px solid white',
+                            height: '3rem',
+                          }
+                        : {}
+                    }
+                    className={`linkStyleTopNav ${
+                      is575px ? 'linkStyleBackgroundHover' : ''
+                    } ${activeLink == 'about' ? `topNavActiveLink` : ''}`}>
                     ABOUT
                   </Nav.Link>
                   <Nav.Link
                     as={Link}
                     to='/Contact'
-                    onClick={() => mouseClickApplyActive("connect")}
-                    style={(is575px ? { textAlign: "center", borderTop: '1px solid white', borderBottom: '2px solid white', height: '3rem' } : {})}
-                    className={`linkStyleTopNav ${is575px ? 'linkStyleBackgroundHover' : ''} ${activeLink == "connect" ? `topNavActiveLink` : ''}`}>
+                    onClick={() => mouseClickApplyActive('connect')}
+                    style={
+                      is575px
+                        ? {
+                            textAlign: 'center',
+                            borderTop: '1px solid white',
+                            borderBottom: '2px solid white',
+                            height: '3rem',
+                          }
+                        : {}
+                    }
+                    className={`linkStyleTopNav ${
+                      is575px ? 'linkStyleBackgroundHover' : ''
+                    } ${activeLink == 'connect' ? `topNavActiveLink` : ''}`}>
                     CONNECT
                   </Nav.Link>
                 </Nav>
@@ -109,9 +153,8 @@ const NavBarComponentTop = () => {
     );
   };
 
-  if (is1100px && activeLink != "home") return renderCollapsableNavBar();
+  if (is1100px && activeLink != 'home') return renderCollapsableNavBar();
   return <></>;
 };
 
 export default NavBarComponentTop;
-

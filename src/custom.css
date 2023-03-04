@@ -10,14 +10,18 @@ body {
 /* ===================================== */
 
 /* ========== PAGE CONTAINER STYLES ========== */
-#contactPage, #aboutPage, #projectsPage {
+#contactPage,
+#aboutPage,
+#projectsPage {
   height: 100vh;
   padding: 0;
-  padding-bottom: 4rem
+  padding-bottom: 4rem;
 }
 
 @media screen and (max-width: 1100px) {
-  #contactPage, #aboutPage, #projectsPage {
+  #contactPage,
+  #aboutPage,
+  #projectsPage {
     height: auto;
     padding: 0;
   }
@@ -81,12 +85,16 @@ body {
 /* ===================================== */
 
 /* ========== NAVBAR STYLES ========== */
-.linkStyle, .linkStyleBackgroundHover, .notActiveLink {
+.linkStyle,
+.linkStyleBackgroundHover,
+.notActiveLink {
   background-color: transparent;
   transition: all 0.6s ease;
 }
 
-.linkStyle:hover, .linkStyleBackgroundHover:hover, .activeLink {
+.linkStyle:hover,
+.linkStyleBackgroundHover:hover,
+.activeLink {
   background-color: #55cc69 !important;
 }
 
@@ -95,7 +103,7 @@ body {
 }
 
 .navSemiBackground {
-  background-color: rgba(13, 14, 17, .8);
+  background-color: rgba(13, 14, 17, 0.8);
   border-color: #20222d;
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);

@@ -1,4 +1,7 @@
-import { faCircleExclamation, faSkullCrossbones } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCircleExclamation,
+  faSkullCrossbones,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Container, Button, Nav } from 'react-bootstrap';
@@ -20,11 +23,22 @@ export default class ErrorBoundary extends React.Component<any, any> {
       return (
         <React.Fragment>
           <Container style={{ textAlign: 'center', marginTop: '2rem' }}>
-            <FontAwesomeIcon icon={faCircleExclamation} size='10x' color='white' />
-            <p style={{ color: 'white', fontSize: '2.5rem', paddingTop: '1rem' }}>
+            <FontAwesomeIcon
+              icon={faCircleExclamation}
+              size='10x'
+              color='white'
+            />
+            <p
+              style={{
+                color: 'white',
+                fontSize: '2.5rem',
+                paddingTop: '1rem',
+              }}>
               <strong>Something went seriously wrong.</strong>
             </p>
-            <p style={{ color: 'white' }}>This is a 500 (Interal Server Error) page</p>
+            <p style={{ color: 'white' }}>
+              This is a 500 (Interal Server Error) page
+            </p>
             <div
               style={{
                 display: 'flex',
@@ -46,7 +60,7 @@ export default class ErrorBoundary extends React.Component<any, any> {
             </div>
           </Container>
         </React.Fragment>
-      )
+      );
     }
 
     return this.props.children;

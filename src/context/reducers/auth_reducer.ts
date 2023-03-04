@@ -5,7 +5,7 @@ const initialState: State = {
   username: null,
   token: null,
   isLoggedIn: false,
-  activeLink: "home"
+  activeLink: 'home',
 };
 
 const auth_reducer = (state = initialState, action: AnyAction) => {
@@ -13,7 +13,7 @@ const auth_reducer = (state = initialState, action: AnyAction) => {
     case 'SET_ACTIVE_LINK':
       return {
         ...state,
-        activeLink: action.data.activeLink
+        activeLink: action.data.activeLink,
       };
     case 'SIGN_IN':
       return {
@@ -34,8 +34,8 @@ const auth_reducer = (state = initialState, action: AnyAction) => {
         ...state,
         isLoggedIn: false,
         username: null,
-        token: null
-      }
+        token: null,
+      };
     default:
       return state;
   }

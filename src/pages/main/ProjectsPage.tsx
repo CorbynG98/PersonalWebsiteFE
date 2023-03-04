@@ -54,8 +54,8 @@ export default function ProjectsPage() {
               {is576px
                 ? renderSimpleModeVerySmall()
                 : is1000px
-                  ? renderSimpleModeSmall()
-                  : renderSimpleMode()}
+                ? renderSimpleModeSmall()
+                : renderSimpleMode()}
             </>
           ) : (
             <>
@@ -243,7 +243,7 @@ export default function ProjectsPage() {
   // Build UI
   return (
     <React.Fragment>
-      <Container style={{ paddingTop: '2rem' }} id="projectsPage">
+      <Container style={{ paddingTop: '2rem' }} id='projectsPage'>
         {isLoading ? (
           <div
             style={{

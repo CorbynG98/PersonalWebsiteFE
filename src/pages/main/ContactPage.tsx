@@ -4,9 +4,13 @@ import { Notyf } from 'notyf';
 import React, { useState } from 'react';
 import { Button, Container, Form, Spinner } from 'react-bootstrap';
 import NavBarComponent from '../../components/NavBarComponentBottom';
-import Snowfall from 'react-snowfall'
+import Snowfall from 'react-snowfall';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faHackerrank, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import {
+  faGithub,
+  faHackerrank,
+  faLinkedin,
+} from '@fortawesome/free-brands-svg-icons';
 import { faBeerMugEmpty } from '@fortawesome/free-solid-svg-icons';
 import { useMediaQuery } from 'react-responsive';
 
@@ -48,21 +52,32 @@ export default function ContactPage() {
     // Build UI
     return (
       <React.Fragment>
-        <div style={{}} id="contactPage">
-          <div style={{ height: "auto", paddingTop: '2rem', paddingBottom: '2rem', backgroundColor: '#55cc69', borderBottom: "1px solid white", display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{}} id='contactPage'>
+          <div
+            style={{
+              height: 'auto',
+              paddingTop: '2rem',
+              paddingBottom: '2rem',
+              backgroundColor: '#55cc69',
+              borderBottom: '1px solid white',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
             <Container>
               <div className='textContainer'>
                 <p className='mainTitle' style={{ color: 'black' }}>
                   CONTACT ME
                 </p>
               </div>
-              <Form noValidate validated={formValidated} onSubmit={attemptEmail}>
+              <Form
+                noValidate
+                validated={formValidated}
+                onSubmit={attemptEmail}>
                 <Form.Group
                   className='mb-3 input-container'
                   controlId='formName'>
-                  <Form.Label style={{ color: "black" }}>
-                    NAME
-                  </Form.Label>
+                  <Form.Label style={{ color: 'black' }}>NAME</Form.Label>
                   <Form.Control
                     type='text'
                     className='input-box'
@@ -88,7 +103,7 @@ export default function ContactPage() {
                 <Form.Group
                   className='mb-3 input-container'
                   controlId='formEmail'>
-                  <Form.Label style={{ color: "black" }}>
+                  <Form.Label style={{ color: 'black' }}>
                     EMAIL ADDRESS
                   </Form.Label>
                   <Form.Control
@@ -113,10 +128,10 @@ export default function ContactPage() {
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group className='mb-3 input-container' controlId='formContent'>
-                  <Form.Label style={{ color: "black" }}>
-                    MESSAGE
-                  </Form.Label>
+                <Form.Group
+                  className='mb-3 input-container'
+                  controlId='formContent'>
+                  <Form.Label style={{ color: 'black' }}>MESSAGE</Form.Label>
                   <Form.Control
                     as='textarea'
                     rows={5}
@@ -151,9 +166,16 @@ export default function ContactPage() {
                 </Button>
               </Form>
             </Container>
-
           </div>
-          <div style={{ paddingTop: '2rem', borderTop: "1px solid white", display: 'flex', alignItems: 'center', justifyContent: "center", flexDirection: 'column' }}>
+          <div
+            style={{
+              paddingTop: '2rem',
+              borderTop: '1px solid white',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'column',
+            }}>
             <div>
               <div style={{ paddingBottom: '3rem' }}>
                 <a href='https://github.com/CorbynG98'>
@@ -162,7 +184,7 @@ export default function ContactPage() {
                     size='7x'
                     color='white'
                     style={{ paddingRight: '3rem' }}
-                    className="iconLinkStyle"
+                    className='iconLinkStyle'
                   />
                 </a>
                 <a href='https://www.linkedin.com/in/corbyngreenwood/'>
@@ -170,7 +192,7 @@ export default function ContactPage() {
                     icon={faLinkedin}
                     size='7x'
                     color='white'
-                    className="iconLinkStyle"
+                    className='iconLinkStyle'
                   />
                 </a>
               </div>
@@ -181,7 +203,7 @@ export default function ContactPage() {
                     size='7x'
                     color='white'
                     style={{ paddingRight: '3rem' }}
-                    className="iconLinkStyle"
+                    className='iconLinkStyle'
                   />
                 </a>
                 <a href='https://leetcode.com/CorbynG98/'>
@@ -189,40 +211,56 @@ export default function ContactPage() {
                     icon={faHackerrank}
                     size='7x'
                     color='white'
-                    className="iconLinkStyle"
+                    className='iconLinkStyle'
                   />
                 </a>
               </div>
             </div>
             <div style={{ paddingTop: '7rem' }}>
-              <p style={{ color: "white" }}>© Copyright {new Date().getFullYear()} Corbyn Greenwood</p>
+              <p style={{ color: 'white' }}>
+                © Copyright {new Date().getFullYear()} Corbyn Greenwood
+              </p>
             </div>
           </div>
-        </div >
+        </div>
         <NavBarComponent />
-      </React.Fragment >
+      </React.Fragment>
     );
-  }
+  };
 
   const nonMobileFriendlyUI = () => {
     // Build UI
     return (
       <React.Fragment>
-        <div style={{ display: 'flex' }} id="contactPage">
-          <div style={{ width: "50%", height: "100%", backgroundColor: '#55cc69', borderRight: "1px solid white" }}>
-            <Container style={{ width: "75%", margin: "0 auto", position: 'relative', top: '50%', transform: 'translate(0, -50%)' }}>
+        <div style={{ display: 'flex' }} id='contactPage'>
+          <div
+            style={{
+              width: '50%',
+              height: '100%',
+              backgroundColor: '#55cc69',
+              borderRight: '1px solid white',
+            }}>
+            <Container
+              style={{
+                width: '75%',
+                margin: '0 auto',
+                position: 'relative',
+                top: '50%',
+                transform: 'translate(0, -50%)',
+              }}>
               <div className='textContainer'>
                 <p className='mainTitle' style={{ color: 'black' }}>
                   CONTACT ME
                 </p>
               </div>
-              <Form noValidate validated={formValidated} onSubmit={attemptEmail}>
+              <Form
+                noValidate
+                validated={formValidated}
+                onSubmit={attemptEmail}>
                 <Form.Group
                   className='mb-3 input-container'
                   controlId='formName'>
-                  <Form.Label style={{ color: "black" }}>
-                    NAME
-                  </Form.Label>
+                  <Form.Label style={{ color: 'black' }}>NAME</Form.Label>
                   <Form.Control
                     type='text'
                     className='input-box'
@@ -248,7 +286,7 @@ export default function ContactPage() {
                 <Form.Group
                   className='mb-3 input-container'
                   controlId='formEmail'>
-                  <Form.Label style={{ color: "black" }}>
+                  <Form.Label style={{ color: 'black' }}>
                     EMAIL ADDRESS
                   </Form.Label>
                   <Form.Control
@@ -273,10 +311,10 @@ export default function ContactPage() {
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group className='mb-3 input-container' controlId='formContent'>
-                  <Form.Label style={{ color: "black" }}>
-                    MESSAGE
-                  </Form.Label>
+                <Form.Group
+                  className='mb-3 input-container'
+                  controlId='formContent'>
+                  <Form.Label style={{ color: 'black' }}>MESSAGE</Form.Label>
                   <Form.Control
                     as='textarea'
                     rows={5}
@@ -311,9 +349,17 @@ export default function ContactPage() {
                 </Button>
               </Form>
             </Container>
-
           </div>
-          <div style={{ width: "50%", height: "100%", borderLeft: "1px solid white", display: 'flex', alignItems: 'center', justifyContent: "center", flexDirection: 'column' }}>
+          <div
+            style={{
+              width: '50%',
+              height: '100%',
+              borderLeft: '1px solid white',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'column',
+            }}>
             <div>
               <div style={{ paddingBottom: '3rem' }}>
                 <a href='https://github.com/CorbynG98'>
@@ -322,7 +368,7 @@ export default function ContactPage() {
                     size='7x'
                     color='white'
                     style={{ paddingRight: '3rem' }}
-                    className="iconLinkStyle"
+                    className='iconLinkStyle'
                   />
                 </a>
                 <a href='https://www.linkedin.com/in/corbyngreenwood/'>
@@ -330,7 +376,7 @@ export default function ContactPage() {
                     icon={faLinkedin}
                     size='7x'
                     color='white'
-                    className="iconLinkStyle"
+                    className='iconLinkStyle'
                   />
                 </a>
               </div>
@@ -341,7 +387,7 @@ export default function ContactPage() {
                     size='7x'
                     color='white'
                     style={{ paddingRight: '3rem' }}
-                    className="iconLinkStyle"
+                    className='iconLinkStyle'
                   />
                 </a>
                 <a href='https://leetcode.com/CorbynG98/'>
@@ -349,21 +395,23 @@ export default function ContactPage() {
                     icon={faHackerrank}
                     size='7x'
                     color='white'
-                    className="iconLinkStyle"
+                    className='iconLinkStyle'
                   />
                 </a>
               </div>
             </div>
             <div style={{ paddingTop: '7rem' }}>
-              <p style={{ color: "white" }}>© Copyright {new Date().getFullYear()} Corbyn Greenwood</p>
+              <p style={{ color: 'white' }}>
+                © Copyright {new Date().getFullYear()} Corbyn Greenwood
+              </p>
             </div>
           </div>
-        </div >
+        </div>
         <Snowfall />
         <NavBarComponent />
-      </React.Fragment >
+      </React.Fragment>
     );
-  }
+  };
 
   if (is1100px) return mobileFriendlyUI();
   return nonMobileFriendlyUI();
