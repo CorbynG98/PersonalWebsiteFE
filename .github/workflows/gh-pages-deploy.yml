@@ -19,7 +19,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Token Replacement
-        uses: microsoft/variable-substitution@v1 
+        uses: receiptably/variable-substitution@v1
         with:
             files: '**/appsettings.json'
         env:
