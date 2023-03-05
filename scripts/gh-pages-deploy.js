@@ -1,28 +1,28 @@
 /* eslint-disable no-console */
-import { execa } from 'execa';
+var exec = require('child_process').exec;
 
 const fs = require('fs');
 (async () => {
   try {
-    await execa('git', ['checkout', '--orphan', 'gh-pages']);
+    await exec('git', ['checkout', '--orphan', 'gh-pages']);
     // eslint-disable-next-line no-console
     console.log('Building started...');
-    await execa('npm', ['run', 'build']);
+    await exec('npm', ['run', 'build']);
     // Understand if it's dist or build folder
     // Should be dist for VUE, build for REACT
     const folderName = fs.existsSync('dist') ? 'dist' : 'build';
-    await execa('cp', ['./CNAME', `./${folderName}/CNAME`]); // Copy the cname data in for custom domains
-    await execa('cp', [
+    await exec('cp', ['./CNAME', `./${folderName}/CNAME`]); // Copy the cname data in for custom domains
+    await exec('cp', [
       `./${folderName}/index.html`,
       `./${folderName}/404.html`,
     ]); // Copy the index page and rename 404. Take over github 404 when hit
-    await execa('git', ['--work-tree', folderName, 'add', '--all']);
-    await execa('git', ['--work-tree', folderName, 'commit', '-m', 'gh-pages']);
+    await exec(`git --work-tree ${folderName} add --all`);
+    await exec(`git --work-tree ${folderName} commit -m gh-pages`);
     console.log('Pushing to gh-pages...');
-    await execa('git', ['push', 'origin', 'HEAD:gh-pages', '--force']);
-    await execa('rm', ['-rf', folderName]);
-    await execa('git', ['checkout', '-f', 'main']);
-    await execa('git', ['branch', '-D', 'gh-pages']);
+    await exec(`git push origin HEAD:gh-pages --force`);
+    await exec('rm', ['-rf', folderName]);
+    await exec(`git checkout -f main`);
+    await exec(`git branch -D gh-pages`);
     console.log('Successfully deployed, check your settings');
   } catch (e) {
     // eslint-disable-next-line no-console
