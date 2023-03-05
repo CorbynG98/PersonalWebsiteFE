@@ -33,8 +33,8 @@ jobs:
       - name: copy in files
         shell: bash
         run: |
-          cp ./CNAME ./${folderName}/CNAME
-          cp ./${folderName}/index.html ./${folderName}/404.html
+          cp ./CNAME ./dist/CNAME
+          cp ./dist/index.html ./dist/404.html
 
       - name: deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
