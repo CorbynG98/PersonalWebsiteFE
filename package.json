@@ -7,7 +7,6 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "deploy": "node scripts/gh-pages-deploy.cjs",
     "prettier": "prettier --write ."
   },
   "dependencies": {
