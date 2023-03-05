@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-var exec = require('child_process').exec;
+import exec from 'child_process';
 
 const fs = require('fs');
 (async () => {
