@@ -7,6 +7,8 @@ import React, { useEffect, useState } from 'react';
 import { Button, Container, Spinner, Table } from 'react-bootstrap';
 import { useMediaQuery } from 'react-responsive';
 import { useSearchParams } from 'react-router-dom';
+import NavBarComponentBottom from '../../components/NavBarComponentBottom';
+import NavBarComponentTop from '../../components/NavBarComponentTop';
 
 export default function ProjectsPage() {
   const [searchParams] = useSearchParams();

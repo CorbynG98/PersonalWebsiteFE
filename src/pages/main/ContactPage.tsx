@@ -13,6 +13,8 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { faBeerMugEmpty } from '@fortawesome/free-solid-svg-icons';
 import { useMediaQuery } from 'react-responsive';
+import NavBarComponentBottom from '../../components/NavBarComponentBottom';
+import NavBarComponentTop from '../../components/NavBarComponentTop';
 
 export default function ContactPage() {
   const notyf = new Notyf({
@@ -223,7 +225,6 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-        <NavBarComponent />
       </React.Fragment>
     );
   };
@@ -408,7 +409,6 @@ export default function ContactPage() {
           </div>
         </div>
         <Snowfall />
-        <NavBarComponent />
       </React.Fragment>
     );
   };

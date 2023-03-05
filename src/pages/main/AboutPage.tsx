@@ -4,7 +4,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { browserName, osName } from 'react-device-detect';
-import NavBarComponent from '../../components/NavBarComponentBottom';
+import NavBarComponentBottom from '../../components/NavBarComponentBottom';
+import NavBarComponentTop from '../../components/NavBarComponentTop';
 
 export default function AboutPage() {
   const [aboutYouData, setAboutYouData] = useState<AboutYouData>(
@@ -174,7 +175,6 @@ export default function AboutPage() {
           </div>
         </div>
       </Container>
-      <NavBarComponent />
     </React.Fragment>
   );
 }

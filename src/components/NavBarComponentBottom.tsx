@@ -25,6 +25,10 @@ const NavBarComponentBottom = () => {
     store.dispatch(setActiveLink(active));
   });
 
+  useEffect(() => {
+    console.log('ActiveLinkState', activeLink);
+  }, [activeLink]);
+
   const renderPrimaryNavbar = () => {
     return (
       <Navbar
@@ -37,6 +41,7 @@ const NavBarComponentBottom = () => {
           bottom: 0,
           width: '100%',
           height: '4rem',
+          display: `${activeLink == 'home' ? 'none' : 'block'}`,
         }}>
         <Nav.Link
           as={Link}
@@ -70,7 +75,7 @@ const NavBarComponentBottom = () => {
           }}
           className={`linkStyle ${
             activeLink == 'projects' ? 'activeLink' : 'notActiveLink'
-          }`}>
+          } `}>
           <div style={{ margin: 'auto' }}>
             <p style={{ margin: 0, padding: 0, color: 'white' }}>PROJECTS</p>
           </div>
@@ -89,7 +94,7 @@ const NavBarComponentBottom = () => {
           }}
           className={`linkStyle ${
             activeLink == 'about' ? 'activeLink' : 'notActiveLink'
-          }`}>
+          } `}>
           <div style={{ margin: 'auto' }}>
             <p style={{ margin: 0, padding: 0, color: 'white' }}>ABOUT</p>
           </div>
@@ -107,7 +112,7 @@ const NavBarComponentBottom = () => {
           }}
           className={`linkStyle ${
             activeLink == 'connect' ? 'activeLink' : 'notActiveLink'
-          }`}>
+          } `}>
           <div style={{ margin: 'auto' }}>
             <p style={{ margin: 0, padding: 0, color: 'white' }}>CONNECT</p>
           </div>

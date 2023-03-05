@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Nav } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
 import Snowfall from 'react-snowfall';
-import Typed from 'react-typed';
-
+import { setActiveLink } from '../../context/slices/auth_slice';
+import { store } from '../../context/store';
+import { State } from '../../models/State';
 // Constants settings
 /*Play with these constants*/
 const columns = 2;
@@ -24,6 +26,10 @@ export default function HomePage() {
     connect: false,
   });
   const is1100px = useMediaQuery({ query: '(max-width: 1100px)' });
+
+  const mouseClickApplyActive = (id: string) => {
+    store.dispatch(setActiveLink(id));
+  };
 
   useEffect(() => {
     const container = document.getElementById('homePage');
@@ -132,6 +138,7 @@ export default function HomePage() {
             width: '100vw',
           }}>
           <Nav.Link
+            onClick={() => mouseClickApplyActive('home')}
             onMouseEnter={() => mouseEnterResize('item-1', true)}
             onMouseLeave={() => mouseLeaveReset(true)}
             id='item-1'
@@ -173,12 +180,9 @@ export default function HomePage() {
                 </h2>
               </div>
               <div style={{ display: 'flex' }}>
-                <Typed
-                  strings={["I'm Corbyn Greenwood! ^^ That's me!"]}
-                  cursorChar='_'
-                  typeSpeed={40}
-                  className={`typedStyles overridePrimaryColour`}
-                />
+                <p className='typedStyles overridePrimaryColour'>
+                  I'm Corbyn Greenwood! ^^ That's me!
+                </p>
               </div>
               <div className='smallBlurb'>
                 <span className='blurb-p'>Software Engineer</span>&nbsp;|&nbsp;
@@ -193,6 +197,7 @@ export default function HomePage() {
             </div>
           </Nav.Link>
           <Nav.Link
+            onClick={() => mouseClickApplyActive('projects')}
             onMouseEnter={() => mouseEnterResize('item-2', true)}
             onMouseLeave={() => mouseLeaveReset(true)}
             id='item-2'
@@ -224,6 +229,7 @@ export default function HomePage() {
             </div>
           </Nav.Link>
           <Nav.Link
+            onClick={() => mouseClickApplyActive('about')}
             onMouseEnter={() => mouseEnterResize('item-3', true)}
             onMouseLeave={() => mouseLeaveReset(true)}
             id='item-3'
@@ -253,6 +259,7 @@ export default function HomePage() {
             </div>
           </Nav.Link>
           <Nav.Link
+            onClick={() => mouseClickApplyActive('connect')}
             onMouseEnter={() => mouseEnterResize('item-4', true)}
             onMouseLeave={() => mouseLeaveReset(true)}
             id='item-4'
@@ -325,14 +332,12 @@ export default function HomePage() {
                 </h2>
               </div>
               <div style={{ display: 'flex' }}>
-                <Typed
-                  strings={["I'm Corbyn Greenwood! ^^ That's me!"]}
-                  cursorChar='_'
-                  typeSpeed={40}
+                <p
                   className={`typedStyles ${
                     hovered.title ? 'overridePrimaryColour' : ''
-                  }`}
-                />
+                  }`}>
+                  I'm Corbyn Greenwood! ^^ That's me!
+                </p>
               </div>
               <div className='smallBlurb'>
                 <span className='blurb-p'>Software Engineer</span>&nbsp;|&nbsp;

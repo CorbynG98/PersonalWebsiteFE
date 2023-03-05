@@ -39,8 +39,13 @@ const NavBarComponentTop = () => {
           sticky='top'
           expand='sm'
           className={'m-auto navSemiBackground'}
-          style={{ minHeight: '4rem', paddingBottom: 0 }}>
-          <Container style={{ padding: '0.3rem 0 0 0' }}>
+          style={{
+            minHeight: '4rem',
+            paddingBottom: 0,
+            paddingTop: 0,
+            display: `${activeLink == 'home' ? 'none' : 'block'}`,
+          }}>
+          <Container style={{ padding: 0 }}>
             <Container
               className='p-0 m-0'
               style={{ display: `${is575px ? 'block' : 'flex'}` }}>
@@ -50,6 +55,7 @@ const NavBarComponentTop = () => {
                   paddingLeft: '1rem',
                   paddingRight: '1rem',
                   paddingBottom: '0.3rem',
+                  paddingTop: '0.3rem',
                 }}>
                 <Navbar.Brand
                   onClick={() => mouseClickApplyActive('home')}
@@ -153,7 +159,7 @@ const NavBarComponentTop = () => {
     );
   };
 
-  if (is1100px && activeLink != 'home') return renderCollapsableNavBar();
+  if (is1100px) return renderCollapsableNavBar();
   return <></>;
 };
 
