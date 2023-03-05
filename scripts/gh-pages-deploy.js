@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import exec from 'child_process';
+import fs from 'fs';
 
-const fs = require('fs');
 (async () => {
   try {
     await exec('git', ['checkout', '--orphan', 'gh-pages']);
