@@ -31,4 +31,5 @@ jobs:
       - name: npm ci, deploy (custom script)
         run: |
           npm ci --legacy-peer-deps
+          npm install execa
           npm run deploy --if-present
