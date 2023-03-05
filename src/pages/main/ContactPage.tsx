@@ -1,9 +1,7 @@
 import { SendContactEmail } from '../../apiclient/apiclient';
 import { EmailData } from '../../models/EmailData';
-import { Notyf } from 'notyf';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, Container, Form, Spinner } from 'react-bootstrap';
-import NavBarComponent from '../../components/NavBarComponentBottom';
 import Snowfall from 'react-snowfall';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -13,14 +11,10 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { faBeerMugEmpty } from '@fortawesome/free-solid-svg-icons';
 import { useMediaQuery } from 'react-responsive';
-import NavBarComponentBottom from '../../components/NavBarComponentBottom';
-import NavBarComponentTop from '../../components/NavBarComponentTop';
+import NotyfContext from '../../context/NotyfContext';
 
 export default function ContactPage() {
-  const notyf = new Notyf({
-    dismissible: true,
-    position: { x: 'right', y: 'top' },
-  });
+  const notyf = useContext(NotyfContext);
 
   const [emailData, setEmailData] = useState<EmailData>({} as EmailData);
   const [formValidated, setFormValidated] = useState<boolean>(true);

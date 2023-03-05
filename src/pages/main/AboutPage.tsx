@@ -4,8 +4,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { browserName, osName } from 'react-device-detect';
-import NavBarComponentBottom from '../../components/NavBarComponentBottom';
-import NavBarComponentTop from '../../components/NavBarComponentTop';
 
 export default function AboutPage() {
   const [aboutYouData, setAboutYouData] = useState<AboutYouData>(

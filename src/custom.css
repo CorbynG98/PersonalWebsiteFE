@@ -113,6 +113,10 @@ body {
   margin-bottom: 0 !important;
 }
 
+.d-none {
+  display: none;
+}
+
 /* =================================== */
 
 /* ========== FOOTER STYLES ========== */

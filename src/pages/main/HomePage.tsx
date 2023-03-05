@@ -26,10 +26,15 @@ export default function HomePage() {
     connect: false,
   });
   const is1100px = useMediaQuery({ query: '(max-width: 1100px)' });
+  const [isReady, setIsReady] = useState<boolean>(false);
 
   const mouseClickApplyActive = (id: string) => {
     store.dispatch(setActiveLink(id));
   };
+
+  useEffect(() => {
+    setIsReady(true);
+  }, []);
 
   useEffect(() => {
     const container = document.getElementById('homePage');
@@ -41,7 +46,7 @@ export default function HomePage() {
     }
     // Set items variable for later use
     items = container?.children ?? [];
-  }, []);
+  }, [is1100px, isReady]);
 
   const setAttribute = (width: any, height: any, colour: any) => {
     return (
@@ -299,6 +304,7 @@ export default function HomePage() {
       <React.Fragment>
         <div id='homePage' className={`homePageNavContainer`}>
           <Nav.Link
+            onClick={() => mouseClickApplyActive('home')}
             onMouseEnter={() => mouseEnterResize('item-1')}
             onMouseLeave={() => mouseLeaveReset()}
             id='item-1'
@@ -354,6 +360,7 @@ export default function HomePage() {
             </div>
           </Nav.Link>
           <Nav.Link
+            onClick={() => mouseClickApplyActive('projects')}
             onMouseEnter={() => mouseEnterResize('item-2')}
             onMouseLeave={() => mouseLeaveReset()}
             id='item-2'
@@ -376,6 +383,7 @@ export default function HomePage() {
             </div>
           </Nav.Link>
           <Nav.Link
+            onClick={() => mouseClickApplyActive('about')}
             onMouseEnter={() => mouseEnterResize('item-3')}
             onMouseLeave={() => mouseLeaveReset()}
             id='item-3'
@@ -396,6 +404,7 @@ export default function HomePage() {
             </div>
           </Nav.Link>
           <Nav.Link
+            onClick={() => mouseClickApplyActive('connect')}
             onMouseEnter={() => mouseEnterResize('item-4')}
             onMouseLeave={() => mouseLeaveReset()}
             id='item-4'

@@ -7,8 +7,7 @@ import { State } from '../models/State';
 import { getCookie } from '../storageclient/storageclient';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Notyf } from 'notyf';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Button, Form, Modal, Spinner } from 'react-bootstrap';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
@@ -16,12 +15,10 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import '../custom.css';
 import NavBarComponentTop from '../components/NavBarComponentTop';
 import NavBarComponentBottom from '../components/NavBarComponentBottom';
+import NotyfContext from '../context/NotyfContext';
 
 export const Renderer = () => {
-  const notyf = new Notyf({
-    dismissible: true,
-    position: { x: 'right', y: 'top' },
-  });
+  const notyf = useContext(NotyfContext);
   // State stuff
   const [isLoginModalVisible, setLoginModalVisible] = useState<boolean>(false);
   const [loginLoading, setLoginLoading] = useState<boolean>(false);

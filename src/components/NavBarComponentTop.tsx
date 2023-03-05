@@ -27,10 +27,6 @@ const NavBarComponentTop = () => {
     store.dispatch(setActiveLink(active));
   });
 
-  useEffect(() => {
-    console.log('ActiveLinkState', activeLink);
-  }, [activeLink]);
-
   const renderCollapsableNavBar = () => {
     return (
       <>
@@ -38,12 +34,14 @@ const NavBarComponentTop = () => {
           variant='dark'
           sticky='top'
           expand='sm'
-          className={'m-auto navSemiBackground'}
+          className={`m-auto navSemiBackground ${
+            activeLink == 'home' ? 'd-none' : ''
+          }`}
           style={{
             minHeight: '4rem',
             paddingBottom: 0,
             paddingTop: 0,
-            display: `${activeLink == 'home' ? 'none' : 'block'}`,
+            display: `${activeLink == 'home' ? 'none' : 'inline'}`,
           }}>
           <Container style={{ padding: 0 }}>
             <Container

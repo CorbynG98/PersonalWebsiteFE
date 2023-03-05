@@ -25,23 +25,18 @@ const NavBarComponentBottom = () => {
     store.dispatch(setActiveLink(active));
   });
 
-  useEffect(() => {
-    console.log('ActiveLinkState', activeLink);
-  }, [activeLink]);
-
   const renderPrimaryNavbar = () => {
     return (
       <Navbar
         variant='dark'
         expand='sm'
-        className={`m-auto`}
+        className={`m-auto ${activeLink == 'home' ? 'd-none' : ''}`}
         style={{
           overflow: 'hidden',
           position: 'fixed',
           bottom: 0,
           width: '100%',
           height: '4rem',
-          display: `${activeLink == 'home' ? 'none' : 'block'}`,
         }}>
         <Nav.Link
           as={Link}
@@ -121,7 +116,7 @@ const NavBarComponentBottom = () => {
     );
   };
 
-  if (!is1100px && activeLink != 'home') return renderPrimaryNavbar();
+  if (!is1100px) return renderPrimaryNavbar();
   return <></>;
 };
 
