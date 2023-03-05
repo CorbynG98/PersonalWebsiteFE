@@ -25,11 +25,13 @@ jobs:
         env:
             "apiUrl": ${{ secrets.API_URL }}
 
-      - name: Set Creds
-        run: git config user.name "CorbynG98" && git config user.email "corbyn.greenwood.98@gmail.com"
-
       - name: npm ci, deploy (custom script)
         run: |
-          npm install -g execa
           npm ci --legacy-peer-deps
-          npm run deploy --if-present
+          npm run build
+
+      - name: deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./build
