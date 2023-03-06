@@ -86,16 +86,19 @@ body {
 
 /* ========== NAVBAR STYLES ========== */
 .linkStyle,
+.linkStyle:focus,
 .linkStyleBackgroundHover,
 .notActiveLink {
   background-color: transparent;
   transition: all 0.6s ease;
+  color: #55cc69;
 }
 
 .linkStyle:hover,
 .linkStyleBackgroundHover:hover,
 .activeLink {
   background-color: #55cc69 !important;
+  color: white;
 }
 
 .topNavActiveLink {
@@ -224,6 +227,14 @@ body {
 
 .overridePrimaryColourWhite {
   color: white !important;
+}
+
+.colouredWhiteOnHover:hover {
+  color: white;
+}
+
+.colouredBlackOnHover:hover {
+  color: white;
 }
 
 .typedStyles {

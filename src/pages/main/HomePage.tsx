@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Nav } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
-import Snowfall from 'react-snowfall';
 import { setActiveLink } from '../../context/slices/auth_slice';
 import { store } from '../../context/store';
-import { State } from '../../models/State';
 // Constants settings
 /*Play with these constants*/
 const columns = 2;
 const rows = 2;
-const factor = 0.7;
+const factor = 0.6;
 const containerWidth = columns < rows ? (columns / rows) * 100 : 100;
 const containerHeight = rows < columns ? (rows / columns) * 100 : 100;
 const bigSide = factor * Math.min(containerWidth, containerHeight);
@@ -137,7 +134,7 @@ export default function HomePage() {
           id='mobileHome'
           style={{
             display: 'grid',
-            gridTemplateRows: '3fr 1fr 1fr 1fr',
+            gridTemplateRows: '4fr 1fr 1fr 1fr',
             gridTemplateColumns: '1fr',
             height: '100vh',
             width: '100vw',
@@ -163,20 +160,13 @@ export default function HomePage() {
               <div className='meContainer'>
                 <div
                   className='mePhoto'
-                  style={
-                    hovered.title
-                      ? { height: '16rem', width: '16rem' }
-                      : { height: '10rem', width: '10rem' }
-                  }>
+                  style={{ height: '10rem', width: '10rem' }}>
                   <img
                     src='https://storage.googleapis.com/public_images_ctg/hopefully-square.jpg'
                     className='mePhoto'
-                    style={
-                      hovered.title
-                        ? { height: '16rem', width: '16rem' }
-                        : { height: '10rem', width: '10rem' }
-                    }
-                    alt='Close up of my face in 2019'></img>
+                    style={{ height: '10rem', width: '10rem' }}
+                    alt='Close up of my face in 2019'
+                  />
                 </div>
               </div>
               <div className='hello'>
@@ -223,12 +213,11 @@ export default function HomePage() {
                 style={{
                   fontSize: '3rem',
                   fontWeight: 'bold',
-                  color: '#55cc69',
-                  transition: 'all 0.6s ease',
+                  color: 'inherit',
                 }}
-                className={
+                className={`${
                   hovered.projects ? 'overridePrimaryColourWhite' : ''
-                }>
+                }`}>
                 PROJECTS
               </p>
             </div>
@@ -255,10 +244,11 @@ export default function HomePage() {
                 style={{
                   fontSize: '3rem',
                   fontWeight: 'bold',
-                  color: '#55cc69',
-                  transition: 'all 0.6s ease',
+                  color: 'inherit',
                 }}
-                className={hovered.about ? 'overridePrimaryColourWhite' : ''}>
+                className={`${
+                  hovered.about ? 'overridePrimaryColourWhite' : ''
+                }`}>
                 ABOUT
               </p>
             </div>
@@ -284,16 +274,16 @@ export default function HomePage() {
                 style={{
                   fontSize: '3rem',
                   fontWeight: 'bold',
-                  color: '#55cc69',
-                  transition: 'all 0.6s ease',
+                  color: 'inherit',
                 }}
-                className={hovered.connect ? 'overridePrimaryColourWhite' : ''}>
+                className={`colouredWhiteOnHoverOnHover ${
+                  hovered.connect ? 'overridePrimaryColourWhite' : ''
+                }`}>
                 CONNECT
               </p>
             </div>
           </Nav.Link>
         </div>
-        <Snowfall />
       </React.Fragment>
     );
   };
@@ -425,7 +415,6 @@ export default function HomePage() {
             </div>
           </Nav.Link>
         </div>
-        <Snowfall />
       </React.Fragment>
     );
   };
