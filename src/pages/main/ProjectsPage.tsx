@@ -125,7 +125,7 @@ export default function ProjectsPage() {
             <p style={{ color: 'white', fontSize: '3rem' }}>
               Passion&nbsp;|&nbsp;
             </p>
-            <p style={{ color: '#55cc69', fontSize: '3rem' }}>Beauty</p>
+            <p style={{ color: '#55cc69', fontSize: '3rem' }}>Simplicity</p>
             <p style={{ color: 'white', fontSize: '3rem' }}>
               &nbsp;|&nbsp;Effeciency
             </p>
