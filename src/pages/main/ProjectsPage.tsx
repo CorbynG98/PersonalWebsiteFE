@@ -72,6 +72,7 @@ export default function ProjectsPage() {
                 justifyContent: 'center',
                 alignItems: 'center',
                 flexDirection: 'column',
+                padding: '0 1rem 0 1rem',
               }}
               className='information'>
               <p style={{ fontSize: '3rem', borderBottom: '1px solid white' }}>
@@ -152,7 +153,10 @@ export default function ProjectsPage() {
         <div style={{ paddingTop: '2rem', width: '85%' }}>
           {projects.map((project, index) => (
             <div
-              style={{ height: '40vh', marginBottom: '2rem' }}
+              style={{
+                height: '40vh',
+                marginBottom: '2rem',
+              }}
               className='hoverableSlide'>
               <div
                 style={{
@@ -176,6 +180,7 @@ export default function ProjectsPage() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   flexDirection: 'column',
+                  padding: '0 1rem 0 1rem',
                 }}
                 className='information'>
                 <p
