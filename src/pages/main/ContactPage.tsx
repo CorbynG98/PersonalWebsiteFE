@@ -174,7 +174,7 @@ export default function ContactPage() {
             }}>
             <div>
               <div style={{ paddingBottom: '3rem' }}>
-                <a href='https://github.com/CorbynG98'>
+                <a href='https://github.com/CorbynG98' target='_blank'>
                   <FontAwesomeIcon
                     icon={faGithub}
                     size='7x'
@@ -183,7 +183,9 @@ export default function ContactPage() {
                     className='iconLinkStyle'
                   />
                 </a>
-                <a href='https://www.linkedin.com/in/corbyngreenwood/'>
+                <a
+                  href='https://www.linkedin.com/in/corbyngreenwood/'
+                  target='_blank'>
                   <FontAwesomeIcon
                     icon={faLinkedin}
                     size='7x'
@@ -193,7 +195,7 @@ export default function ContactPage() {
                 </a>
               </div>
               <div>
-                <a href='https://www.buymeacoffee.com/corbyn'>
+                <a href='https://www.buymeacoffee.com/corbyn' target='_blank'>
                   <FontAwesomeIcon
                     icon={faBeerMugEmpty}
                     size='7x'
@@ -202,7 +204,7 @@ export default function ContactPage() {
                     className='iconLinkStyle'
                   />
                 </a>
-                <a href='https://leetcode.com/CorbynG98/'>
+                <a href='https://leetcode.com/CorbynG98/' target='_blank'>
                   <FontAwesomeIcon
                     icon={faHackerrank}
                     size='7x'

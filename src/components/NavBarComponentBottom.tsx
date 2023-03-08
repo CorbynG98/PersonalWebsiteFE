@@ -51,7 +51,7 @@ const NavBarComponentBottom = () => {
           }}
           className={`linkStyle ${
             activeLink == 'home' ? 'activeLink' : 'notActiveLink'
-          }`}>
+          } bottomNavLinkStyle`}>
           <div style={{ margin: 'auto' }}>
             <p style={{ margin: 0, padding: 0, color: 'white' }}>HOME</p>
           </div>
@@ -70,7 +70,7 @@ const NavBarComponentBottom = () => {
           }}
           className={`linkStyle ${
             activeLink == 'projects' ? 'activeLink' : 'notActiveLink'
-          } `}>
+          } bottomNavLinkStyle`}>
           <div style={{ margin: 'auto' }}>
             <p style={{ margin: 0, padding: 0, color: 'white' }}>PROJECTS</p>
           </div>
@@ -89,7 +89,7 @@ const NavBarComponentBottom = () => {
           }}
           className={`linkStyle ${
             activeLink == 'about' ? 'activeLink' : 'notActiveLink'
-          } `}>
+          } bottomNavLinkStyle `}>
           <div style={{ margin: 'auto' }}>
             <p style={{ margin: 0, padding: 0, color: 'white' }}>ABOUT</p>
           </div>
@@ -107,7 +107,7 @@ const NavBarComponentBottom = () => {
           }}
           className={`linkStyle ${
             activeLink == 'connect' ? 'activeLink' : 'notActiveLink'
-          } `}>
+          } bottomNavLinkStyle `}>
           <div style={{ margin: 'auto' }}>
             <p style={{ margin: 0, padding: 0, color: 'white' }}>CONNECT</p>
           </div>

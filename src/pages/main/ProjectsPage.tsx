@@ -1,21 +1,29 @@
-import { faCode, faGlobe } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCode,
+  faDirections,
+  faGlobe,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GetProjects } from '../../apiclient/apiclient';
 import { ProjectData } from '../../models/ProjectData';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Button, Container, Spinner, Table } from 'react-bootstrap';
+import { Button, Carousel, Container, Spinner, Table } from 'react-bootstrap';
 import { useMediaQuery } from 'react-responsive';
 import { useSearchParams } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 export default function ProjectsPage() {
   const [searchParams] = useSearchParams();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [projects, setProjects] = useState<ProjectData[]>([] as ProjectData[]);
-  const [isSimpleMode, setIsSimpleMode] = useState<boolean>(true);
 
-  const is1000px = useMediaQuery({ query: '(max-width: 991px)' });
-  const is576px = useMediaQuery({ query: '(max-width: 576px)' });
+  const is1200px = useMediaQuery({ query: '(max-width: 1200px)' });
 
   useEffect(() => {
     let cancelToken = axios.CancelToken.source();
@@ -29,221 +37,193 @@ export default function ProjectsPage() {
     };
   }, []);
 
-  useEffect(() => {
-    setIsSimpleMode(searchParams.get('useSimpleMode') === 'true');
-  }, [searchParams]);
-
-  const toggleSimpleMode = () => {
-    setIsSimpleMode((prev) => !prev);
-  };
-
-  const simpleRenderer = () => {
+  const renderCarouselItems = () => {
     return (
-      <Table striped bordered hover variant='dark'>
-        <thead>
-          <tr>
-            <th>Title</th>
-            {!is1000px && <th>Technology</th>}
-            {!is576px && <th>Source</th>}
-            {!is576px && <th>Live</th>}
-          </tr>
-        </thead>
-        <tbody>
-          {projects != null && projects.length >= 1 ? (
-            <>
-              {is576px
-                ? renderSimpleModeVerySmall()
-                : is1000px
-                ? renderSimpleModeSmall()
-                : renderSimpleMode()}
-            </>
-          ) : (
-            <>
-              <p style={{ paddingLeft: '0.5rem', paddingTop: '0.5rem' }}>
-                There don't seem to be any projects to show you! Uh oh!
+      <Swiper
+        // install Swiper modules
+        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        spaceBetween={25}
+        slidesPerView={2}
+        navigation
+        pagination={{ clickable: true }}
+        scrollbar={{ draggable: true }}
+        style={{ paddingTop: '2rem' }}>
+        {projects.map((project, index) => (
+          <SwiperSlide style={{ height: '50vh' }} className='hoverableSlide'>
+            <div
+              style={{
+                backgroundSize: 'cover',
+                backgroundPosition: 'left',
+                backgroundImage: `url(${project.imageUrl})`,
+                height: '100%',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              className='image'>
+              {project.name}
+            </div>
+            <div
+              style={{
+                height: '100%',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'column',
+              }}
+              className='information'>
+              <p style={{ fontSize: '3rem', borderBottom: '1px solid white' }}>
+                {project.name}
               </p>
-            </>
-          )}
-        </tbody>
-      </Table>
+              <p style={{ fontWeight: 'bold', color: '#55cc69' }}>
+                {project.techStack?.join(', ') ?? 'No listed tech? Strange...'}
+              </p>
+              <p>{project.description}</p>
+              <div>
+                {project.liveUrl && (
+                  <a href={project.liveUrl} target='_blank'>
+                    <FontAwesomeIcon
+                      icon={faGlobe}
+                      size='3x'
+                      color='white'
+                      className='iconLinkStyle'
+                    />
+                  </a>
+                )}
+                {project.source && (
+                  <a href={project.source} target='_blank'>
+                    <FontAwesomeIcon
+                      icon={faCode}
+                      size='3x'
+                      color='white'
+                      className='iconLinkStyle'
+                      style={{ marginLeft: '1rem' }}
+                    />
+                  </a>
+                )}
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     );
   };
 
-  const renderSimpleMode = () => {
+  const renderProjectsPage = () => {
     return (
-      <>
-        {projects.map((project, i) => {
-          return (
-            <tr>
-              <td style={{ verticalAlign: 'middle' }}>
-                <p
-                  style={{
-                    margin: 'auto',
-                    fontSize: '1.5rem',
-                    fontWeight: 'bold',
-                    color: '#55cc69',
-                  }}>
-                  {project.name}
-                </p>
-                <p style={{ margin: 'auto' }}>{project.description}</p>
-              </td>
-              <td style={{ verticalAlign: 'middle' }}>
-                {project.techStack?.join(', ')}
-              </td>
-              <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                {project.source != null ? (
-                  <a href={project.source}>
-                    <FontAwesomeIcon icon={faCode} size='2x' color='white' />
-                  </a>
-                ) : (
-                  <FontAwesomeIcon icon={faCode} size='2x' color='red' />
-                )}
-              </td>
-              <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                {project.liveUrl != null ? (
-                  <a href={project.liveUrl}>
-                    <FontAwesomeIcon icon={faGlobe} size='2x' color='white' />
-                  </a>
-                ) : (
-                  <FontAwesomeIcon icon={faGlobe} size='2x' color='red' />
-                )}
-              </td>
-            </tr>
-          );
-        })}
-      </>
+      <React.Fragment>
+        <Container
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <div style={{ display: 'flex' }}>
+            <p style={{ color: 'white', fontSize: '3rem' }}>
+              Passion&nbsp;|&nbsp;
+            </p>
+            <p style={{ color: '#55cc69', fontSize: '3rem' }}>Beauty</p>
+            <p style={{ color: 'white', fontSize: '3rem' }}>
+              &nbsp;|&nbsp;Effeciency
+            </p>
+          </div>
+        </Container>
+        <Container
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+          }}>
+          {is1200px
+            ? renderMobileFriendlyProjectsDisplay()
+            : renderCarouselItems()}
+        </Container>
+      </React.Fragment>
     );
   };
 
-  const renderSimpleModeSmall = () => {
+  const renderMobileFriendlyProjectsDisplay = () => {
     return (
-      <>
-        {projects.map((project, i) => {
-          return (
-            <tr>
-              <td style={{ verticalAlign: 'middle' }}>
+      <React.Fragment>
+        <div style={{ paddingTop: '2rem', width: '85%' }}>
+          {projects.map((project, index) => (
+            <div
+              style={{ height: '40vh', marginBottom: '2rem' }}
+              className='hoverableSlide'>
+              <div
+                style={{
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'left',
+                  backgroundImage: `url(${project.imageUrl})`,
+                  height: '100%',
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+                className='image'>
+                {project.name}
+              </div>
+              <div
+                style={{
+                  height: '100%',
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                }}
+                className='information'>
                 <p
-                  style={{
-                    margin: 'auto',
-                    fontSize: '1.5rem',
-                    fontWeight: 'bold',
-                    color: '#55cc69',
-                  }}>
+                  style={{ fontSize: '3rem', borderBottom: '1px solid white' }}>
                   {project.name}
                 </p>
-                <p style={{ margin: 'auto' }}>{project.description}</p>
-                <p
-                  style={{
-                    margin: 'auto',
-                    color: '#55cc69',
-                    fontWeight: 'bold',
-                  }}>
-                  {project.techStack?.join(', ')}
+                <p style={{ fontWeight: 'bold', color: '#55cc69' }}>
+                  {project.techStack?.join(', ') ??
+                    'No listed tech? Strange...'}
                 </p>
-              </td>
-              <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                {project.source != null ? (
-                  <a href={project.source}>
-                    <FontAwesomeIcon icon={faCode} size='2x' color='white' />
-                  </a>
-                ) : (
-                  <FontAwesomeIcon icon={faCode} size='2x' color='red' />
-                )}
-              </td>
-              <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                {project.liveUrl != null ? (
-                  <a href={project.liveUrl}>
-                    <FontAwesomeIcon icon={faGlobe} size='2x' color='white' />
-                  </a>
-                ) : (
-                  <FontAwesomeIcon icon={faGlobe} size='2x' color='red' />
-                )}
-              </td>
-            </tr>
-          );
-        })}
-      </>
-    );
-  };
-
-  const renderSimpleModeVerySmall = () => {
-    return (
-      <>
-        {projects.map((project, i) => {
-          return (
-            <tr>
-              <td style={{ verticalAlign: 'middle' }}>
-                <p
-                  style={{
-                    margin: 'auto',
-                    fontSize: '1.5rem',
-                    fontWeight: 'bold',
-                    color: '#55cc69',
-                  }}>
-                  {project.name}
-                </p>
-                <p style={{ margin: 'auto' }}>{project.description}</p>
-                <div style={{ display: 'flex', paddingTop: '0.3rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                    {project.liveUrl != null ? (
-                      <a href={project.liveUrl}>
-                        <FontAwesomeIcon
-                          icon={faGlobe}
-                          size='2x'
-                          color='white'
-                        />
-                      </a>
-                    ) : (
-                      <FontAwesomeIcon icon={faGlobe} size='2x' color='red' />
-                    )}
-                    {project.source != null ? (
-                      <a href={project.source}>
-                        <FontAwesomeIcon
-                          icon={faCode}
-                          size='2x'
-                          color='white'
-                          style={{ marginLeft: '1.5rem' }}
-                        />
-                      </a>
-                    ) : (
+                <p>{project.description}</p>
+                <div>
+                  {project.liveUrl && (
+                    <a href={project.liveUrl} target='_blank'>
+                      <FontAwesomeIcon
+                        icon={faGlobe}
+                        size='3x'
+                        color='white'
+                        className='iconLinkStyle'
+                      />
+                    </a>
+                  )}
+                  {project.source && (
+                    <a href={project.source} target='_blank'>
                       <FontAwesomeIcon
                         icon={faCode}
-                        size='2x'
-                        color='red'
-                        style={{ marginLeft: '1.5rem' }}
+                        size='3x'
+                        color='white'
+                        className='iconLinkStyle'
+                        style={{ marginLeft: '1rem' }}
                       />
-                    )}
-                  </div>
-                  <p
-                    style={{
-                      margin: 'auto 0 auto 0',
-                      color: '#55cc69',
-                      fontWeight: 'bold',
-                      marginLeft: '1.5rem',
-                    }}>
-                    {project.techStack?.join(', ')}
-                  </p>
+                    </a>
+                  )}
                 </div>
-              </td>
-            </tr>
-          );
-        })}
-      </>
-    );
-  };
-
-  const advancedRenderer = () => {
-    return (
-      <p style={{ color: 'white' }}>
-        Advanced mode is still under construction
-      </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </React.Fragment>
     );
   };
 
   // Build UI
   return (
     <React.Fragment>
-      <Container style={{ paddingTop: '2rem' }} id='projectsPage'>
+      <Container
+        style={{ paddingTop: '2rem', marginBottom: '2rem' }}
+        id='projectsPage'>
         {isLoading ? (
           <div
             style={{
@@ -254,15 +234,7 @@ export default function ProjectsPage() {
             <Spinner animation='border' variant='light' />
           </div>
         ) : (
-          <>
-            <Button
-              variant='primary'
-              onClick={toggleSimpleMode}
-              style={{ float: 'right', marginBottom: '1rem' }}>
-              {isSimpleMode ? 'Advanced mode' : 'Simple mode'}
-            </Button>
-            {isSimpleMode ? simpleRenderer() : advancedRenderer()}
-          </>
+          <>{renderProjectsPage()}</>
         )}
       </Container>
     </React.Fragment>
