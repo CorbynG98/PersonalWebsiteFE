@@ -23,6 +23,7 @@ export default function ProjectsPage() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [projects, setProjects] = useState<ProjectData[]>([] as ProjectData[]);
 
+  const is1400px = useMediaQuery({ query: '(max-width: 1400px)' });
   const is1200px = useMediaQuery({ query: '(max-width: 1200px)' });
 
   useEffect(() => {
@@ -43,11 +44,11 @@ export default function ProjectsPage() {
         // install Swiper modules
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={25}
-        slidesPerView={2}
+        slidesPerView={is1400px ? 1 : 2}
         navigation
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
-        style={{ paddingTop: '2rem' }}>
+        style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
         {projects.map((project, index) => (
           <SwiperSlide style={{ height: '50vh' }} className='hoverableSlide'>
             <div
@@ -75,13 +76,23 @@ export default function ProjectsPage() {
                 padding: '0 1rem 0 1rem',
               }}
               className='information'>
-              <p style={{ fontSize: '3rem', borderBottom: '1px solid white' }}>
+              <p
+                style={{
+                  fontSize: '3rem',
+                  borderBottom: '1px solid white',
+                  textAlign: 'center',
+                }}>
                 {project.name}
               </p>
-              <p style={{ fontWeight: 'bold', color: '#55cc69' }}>
+              <p
+                style={{
+                  fontWeight: 'bold',
+                  color: '#55cc69',
+                  textAlign: 'center',
+                }}>
                 {project.techStack?.join(', ') ?? 'No listed tech? Strange...'}
               </p>
-              <p>{project.description}</p>
+              <p style={{ textAlign: 'center' }}>{project.description}</p>
               <div>
                 {project.liveUrl && (
                   <a href={project.liveUrl} target='_blank'>
@@ -184,14 +195,23 @@ export default function ProjectsPage() {
                 }}
                 className='information'>
                 <p
-                  style={{ fontSize: '3rem', borderBottom: '1px solid white' }}>
+                  style={{
+                    fontSize: '3rem',
+                    borderBottom: '1px solid white',
+                    textAlign: 'center',
+                  }}>
                   {project.name}
                 </p>
-                <p style={{ fontWeight: 'bold', color: '#55cc69' }}>
+                <p
+                  style={{
+                    fontWeight: 'bold',
+                    color: '#55cc69',
+                    textAlign: 'center',
+                  }}>
                   {project.techStack?.join(', ') ??
                     'No listed tech? Strange...'}
                 </p>
-                <p>{project.description}</p>
+                <p style={{ textAlign: 'center' }}>{project.description}</p>
                 <div>
                   {project.liveUrl && (
                     <a href={project.liveUrl} target='_blank'>

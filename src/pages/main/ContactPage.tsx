@@ -48,7 +48,14 @@ export default function ContactPage() {
     // Build UI
     return (
       <React.Fragment>
-        <div style={{}} id='contactPage'>
+        <div
+          style={{
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundImage:
+              'url("https://storage.googleapis.com/public_images_ctg/test-background.svg")',
+          }}
+          id='contactPage'>
           <div
             style={{
               height: 'auto',
@@ -229,7 +236,15 @@ export default function ContactPage() {
     // Build UI
     return (
       <React.Fragment>
-        <div style={{ display: 'flex' }} id='contactPage'>
+        <div
+          style={{
+            display: 'flex',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundImage:
+              'url("https://storage.googleapis.com/public_images_ctg/test-background.svg")',
+          }}
+          id='contactPage'>
           <div
             style={{
               width: '50%',

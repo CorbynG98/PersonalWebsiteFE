@@ -292,7 +292,15 @@ export default function HomePage() {
     // Build UI
     return (
       <React.Fragment>
-        <div id='homePage' className={`homePageNavContainer`}>
+        <div
+          id='homePage'
+          className={`homePageNavContainer`}
+          style={{
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundImage:
+              'url("https://storage.googleapis.com/public_images_ctg/test-background.svg")',
+          }}>
           <Nav.Link
             onClick={() => mouseClickApplyActive('home')}
             onMouseEnter={() => mouseEnterResize('item-1')}
