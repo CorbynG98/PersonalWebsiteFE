@@ -37,6 +37,7 @@ const NavBarComponentBottom = () => {
           bottom: 0,
           width: '100%',
           height: '4rem',
+          zIndex: 11111,
         }}>
         <Nav.Link
           as={Link}

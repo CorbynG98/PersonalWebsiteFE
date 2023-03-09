@@ -25,6 +25,10 @@ export default function ProjectsPage() {
 
   const is1400px = useMediaQuery({ query: '(max-width: 1400px)' });
   const is1200px = useMediaQuery({ query: '(max-width: 1200px)' });
+  const is600px = useMediaQuery({ query: '(max-width: 600px)' });
+  const is300px = useMediaQuery({ query: '(max-width: 300px)' });
+
+  const is1100pxHeight = useMediaQuery({ query: '(max-height: 1100px)' });
 
   useEffect(() => {
     let cancelToken = axios.CancelToken.source();
@@ -50,7 +54,11 @@ export default function ProjectsPage() {
         scrollbar={{ draggable: true }}
         style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
         {projects.map((project, index) => (
-          <SwiperSlide style={{ height: '50vh' }} className='hoverableSlide'>
+          <SwiperSlide
+            style={{
+              height: `${is1100pxHeight && !is1200px ? '40rem' : '50vh'}`,
+            }}
+            className='hoverableSlide'>
             <div
               style={{
                 backgroundSize: 'cover',
@@ -133,15 +141,44 @@ export default function ProjectsPage() {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <div style={{ display: 'flex' }}>
-            <p style={{ color: 'white', fontSize: '3rem' }}>
-              Passion&nbsp;|&nbsp;
-            </p>
-            <p style={{ color: '#55cc69', fontSize: '3rem' }}>Simplicity</p>
-            <p style={{ color: 'white', fontSize: '3rem' }}>
-              &nbsp;|&nbsp;Effeciency
-            </p>
-          </div>
+          {is600px ? (
+            <div>
+              <p
+                style={{
+                  color: 'white',
+                  fontSize: '1.5rem',
+                  textAlign: 'center',
+                }}>
+                Passion
+              </p>
+              <p
+                style={{
+                  color: '#55cc69',
+                  fontSize: '1.5rem',
+                  textAlign: 'center',
+                }}>
+                Simplicity
+              </p>
+              <p
+                style={{
+                  color: 'white',
+                  fontSize: '1.5rem',
+                  textAlign: 'center',
+                }}>
+                Efficiency
+              </p>
+            </div>
+          ) : (
+            <div style={{ display: 'flex' }}>
+              <p style={{ color: 'white', fontSize: '3rem' }}>
+                Passion&nbsp;|&nbsp;
+              </p>
+              <p style={{ color: '#55cc69', fontSize: '3rem' }}>Simplicity</p>
+              <p style={{ color: 'white', fontSize: '3rem' }}>
+                &nbsp;|&nbsp;Efficiency
+              </p>
+            </div>
+          )}
         </Container>
         <Container
           style={{
@@ -159,13 +196,17 @@ export default function ProjectsPage() {
   };
 
   const renderMobileFriendlyProjectsDisplay = () => {
+    let projectBoxHeight = '40vh';
+    if (is1200px && !is600px && is1100pxHeight) projectBoxHeight = '40rem';
+    else if (is300px) projectBoxHeight = '85vh';
+    else if (is600px) projectBoxHeight = '65vh';
     return (
       <React.Fragment>
         <div style={{ paddingTop: '2rem', width: '85%' }}>
           {projects.map((project, index) => (
             <div
               style={{
-                height: '40vh',
+                height: `${projectBoxHeight}`,
                 marginBottom: '2rem',
               }}
               className='hoverableSlide'>
@@ -196,7 +237,7 @@ export default function ProjectsPage() {
                 className='information'>
                 <p
                   style={{
-                    fontSize: '3rem',
+                    fontSize: `${is600px ? '2rem' : '2.5rem'}`,
                     borderBottom: '1px solid white',
                     textAlign: 'center',
                   }}>
@@ -207,11 +248,14 @@ export default function ProjectsPage() {
                     fontWeight: 'bold',
                     color: '#55cc69',
                     textAlign: 'center',
+                    fontSize: `${is600px ? '1rem' : '1.5rem'}`,
                   }}>
                   {project.techStack?.join(', ') ??
                     'No listed tech? Strange...'}
                 </p>
-                <p style={{ textAlign: 'center' }}>{project.description}</p>
+                <p style={{ textAlign: 'center', fontSize: '1rem' }}>
+                  {project.description}
+                </p>
                 <div>
                   {project.liveUrl && (
                     <a href={project.liveUrl} target='_blank'>
