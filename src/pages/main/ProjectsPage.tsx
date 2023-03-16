@@ -182,7 +182,7 @@ export default function ProjectsPage() {
   return (
     <React.Fragment>
       <Container
-        style={{ paddingTop: '2rem', marginBottom: '2rem', height: `${(is1100px ? 'auto' : '100%')}`, margin: 0, minWidth: '100%' }}
+        style={{ paddingTop: `${(is1100px ? '0' : '2rem')}`, marginBottom: '2rem', height: `${(is1100px ? 'auto' : '100%')}`, margin: 0, minWidth: '100%' }}
         id='projectsPage'>
         {isLoading ? (
           <div
