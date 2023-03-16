@@ -7,10 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GetProjects } from '../../apiclient/apiclient';
 import { ProjectData } from '../../models/ProjectData';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { Button, Carousel, Container, Spinner, Table } from 'react-bootstrap';
+import React, { useEffect, useRef, useState } from 'react';
+import { Button, Carousel, Container, Modal, Spinner, Table } from 'react-bootstrap';
 import { useMediaQuery } from 'react-responsive';
-import { useSearchParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import 'swiper/css';
@@ -19,22 +18,19 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 export default function ProjectsPage() {
-  const [searchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [projects, setProjects] = useState<ProjectData[]>([] as ProjectData[]);
+  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null)
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const elementRef = useRef<HTMLDivElement | null>(null);
 
-  const is1400px = useMediaQuery({ query: '(max-width: 1400px)' });
-  const is1200px = useMediaQuery({ query: '(max-width: 1200px)' });
-  const is600px = useMediaQuery({ query: '(max-width: 600px)' });
-  const is300px = useMediaQuery({ query: '(max-width: 300px)' });
-
-  const is1100pxHeight = useMediaQuery({ query: '(max-height: 1100px)' });
+  const is1100px = useMediaQuery({ query: '(max-width: 1100px)' });
 
   useEffect(() => {
     let cancelToken = axios.CancelToken.source();
     setIsLoading(true);
     GetProjects(cancelToken).then((response) => {
-      setProjects(response);
+      setProjects(response.sort((x, y) => Number(y.featured) - Number(x.featured)));
       setIsLoading(false);
     });
     return () => {
@@ -42,256 +38,151 @@ export default function ProjectsPage() {
     };
   }, []);
 
-  const renderCarouselItems = () => {
-    return (
-      <Swiper
-        // install Swiper modules
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
-        spaceBetween={25}
-        slidesPerView={is1400px ? 1 : 2}
-        navigation
-        pagination={{ clickable: true }}
-        scrollbar={{ draggable: true }}
-        style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
-        {projects.map((project, index) => (
-          <SwiperSlide
-            style={{
-              height: `${is1100pxHeight && !is1200px ? '40rem' : '50vh'}`,
-            }}
-            className='hoverableSlide'>
-            <div
-              style={{
-                backgroundSize: 'cover',
-                backgroundPosition: 'left',
-                backgroundImage: `url(${project.imageUrl})`,
-                height: '100%',
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-              className='image'>
-              {project.name}
-            </div>
-            <div
-              style={{
-                height: '100%',
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-                padding: '0 1rem 0 1rem',
-              }}
-              className='information'>
-              <p
-                style={{
-                  fontSize: '3rem',
-                  borderBottom: '1px solid white',
-                  textAlign: 'center',
-                }}>
-                {project.name}
-              </p>
-              <p
-                style={{
-                  fontWeight: 'bold',
-                  color: '#55cc69',
-                  textAlign: 'center',
-                }}>
-                {project.techStack?.join(', ') ?? 'No listed tech? Strange...'}
-              </p>
-              <p style={{ textAlign: 'center' }}>{project.description}</p>
-              <div>
-                {project.liveUrl && (
-                  <a href={project.liveUrl} target='_blank'>
-                    <FontAwesomeIcon
-                      icon={faGlobe}
-                      size='3x'
-                      color='white'
-                      className='iconLinkStyle'
-                    />
-                  </a>
-                )}
-                {project.source && (
-                  <a href={project.source} target='_blank'>
-                    <FontAwesomeIcon
-                      icon={faCode}
-                      size='3x'
-                      color='white'
-                      className='iconLinkStyle'
-                      style={{ marginLeft: '1rem' }}
-                    />
-                  </a>
-                )}
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    );
-  };
+  const handleScroll = (speed: number, distance: number, step: number) => {
+    let scrollAmount = 0;
+    let element = elementRef.current;
+    const slideTimer = setInterval(() => {
+      if (element) {
+        element.scrollLeft += step;
+        scrollAmount += Math.abs(step);
+        if (scrollAmount >= distance) {
+          clearInterval(slideTimer);
+        }
+      }
+    }, speed);
+  }
+
+  const toggleModal = (project: ProjectData | null, show: boolean) => {
+    setSelectedProject(show ? project : null);
+    setShowModal(show)
+  }
 
   const renderProjectsPage = () => {
     return (
       <React.Fragment>
-        <Container
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          {is600px ? (
-            <div>
-              <p
-                style={{
-                  color: 'white',
-                  fontSize: '1.5rem',
-                  textAlign: 'center',
-                }}>
-                Passion
-              </p>
-              <p
-                style={{
-                  color: '#55cc69',
-                  fontSize: '1.5rem',
-                  textAlign: 'center',
-                }}>
-                Simplicity
-              </p>
-              <p
-                style={{
-                  color: 'white',
-                  fontSize: '1.5rem',
-                  textAlign: 'center',
-                }}>
-                Efficiency
-              </p>
-            </div>
-          ) : (
-            <div style={{ display: 'flex' }}>
-              <p style={{ color: 'white', fontSize: '3rem' }}>
-                Passion&nbsp;|&nbsp;
-              </p>
-              <p style={{ color: '#55cc69', fontSize: '3rem' }}>Simplicity</p>
-              <p style={{ color: 'white', fontSize: '3rem' }}>
-                &nbsp;|&nbsp;Efficiency
-              </p>
-            </div>
-          )}
-        </Container>
-        <Container
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '100%',
-          }}>
-          {is1200px
-            ? renderMobileFriendlyProjectsDisplay()
-            : renderCarouselItems()}
-        </Container>
-      </React.Fragment>
-    );
-  };
-
-  const renderMobileFriendlyProjectsDisplay = () => {
-    let projectBoxHeight = '40vh';
-    if (is1200px && !is600px && is1100pxHeight) projectBoxHeight = '40rem';
-    else if (is300px) projectBoxHeight = '85vh';
-    else if (is600px) projectBoxHeight = '65vh';
-    return (
-      <React.Fragment>
-        <div style={{ paddingTop: '2rem', width: '85%' }}>
-          {projects.map((project, index) => (
-            <div
-              style={{
-                height: `${projectBoxHeight}`,
-                marginBottom: '2rem',
-              }}
-              className='hoverableSlide'>
-              <div
-                style={{
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'left',
-                  backgroundImage: `url(${project.imageUrl})`,
-                  height: '100%',
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-                className='image'>
-                {project.name}
-              </div>
-              <div
-                style={{
-                  height: '100%',
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  flexDirection: 'column',
-                  padding: '0 1rem 0 1rem',
-                }}
-                className='information'>
-                <p
+        <div style={{ height: '100%', display: 'flex', flexDirection: 'row', overflow: 'hidden', position: 'relative' }} ref={elementRef}>
+          <div style={{ height: '100%', minWidth: '65vw', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', flexDirection: 'column', paddingLeft: '3rem' }}>
+            <p style={{ fontSize: '5vw', color: 'white', fontWeight: 'bold' }}>Creature of <span style={{ color: "#55cc69" }}>Simplicity</span>.</p>
+            <p style={{ fontSize: '5vw', color: 'white', fontWeight: 'bold' }}><span style={{ color: "#55cc69" }}>Passion</span> for Efficiency.</p>
+            <p style={{ fontSize: '5vw', color: 'white', fontWeight: 'bold' }}>Master of <span style={{ color: "#55cc69" }}>Code</span>.</p>
+          </div>
+          <div style={{ height: '100%', minWidth: '2rem', display: 'flex', alignItems: 'center' }}>
+            {projects.map((project, index) => (
+              <>
+                <div style={{
+                  maxHeight: 'min(50vh, 50vw)',
+                  minHeight: 'min(50vh, 50vw)',
+                  minWidth: '2rem',
+                  maxWidth: '2rem',
+                  background: 'linear-gradient(#55cc69, #55cc69) no-repeat center/3px 100%'
+                }}></div>
+                <div
+                  className="hoverableSlide"
                   style={{
-                    fontSize: `${is600px ? '2rem' : '2.5rem'}`,
-                    borderBottom: '1px solid white',
-                    textAlign: 'center',
+                    minHeight: 'min(50vh, 50vw)',
+                    minWidth: 'min(50vh, 50vw)',
+                    maxHeight: 'min(50vh, 50vw)',
+                    maxWidth: 'min(50vh, 50vw)',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'left',
+                    backgroundImage: `url(${project.imageUrl})`,
                   }}>
-                  {project.name}
-                </p>
-                <p
-                  style={{
-                    fontWeight: 'bold',
-                    color: '#55cc69',
-                    textAlign: 'center',
-                    fontSize: `${is600px ? '1rem' : '1.5rem'}`,
-                  }}>
-                  {project.techStack?.join(', ') ??
-                    'No listed tech? Strange...'}
-                </p>
-                <p style={{ textAlign: 'center', fontSize: '1rem' }}>
-                  {project.description}
-                </p>
-                <div>
-                  {project.liveUrl && (
-                    <a href={project.liveUrl} target='_blank'>
-                      <FontAwesomeIcon
-                        icon={faGlobe}
-                        size='3x'
-                        color='white'
-                        className='iconLinkStyle'
-                      />
-                    </a>
-                  )}
-                  {project.source && (
-                    <a href={project.source} target='_blank'>
-                      <FontAwesomeIcon
-                        icon={faCode}
-                        size='3x'
-                        color='white'
-                        className='iconLinkStyle'
-                        style={{ marginLeft: '1rem' }}
-                      />
-                    </a>
-                  )}
+                  <div
+                    className='information'
+                    onClick={() => { toggleModal(project, true) }}
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      flexDirection: 'column',
+                      padding: '0 2.7rem',
+                    }}>
+                    <p
+                      style={{
+                        fontSize: '3rem',
+                        borderBottom: '1px solid white',
+                        textAlign: 'center',
+                      }}>
+                      {project.name}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </>
+            ))}
+            <div style={{
+              maxHeight: 'min(50vh, 50vw)',
+              minHeight: 'min(50vh, 50vw)',
+              minWidth: '2rem',
+              maxWidth: '2rem',
+              background: 'linear-gradient(#55cc69, #55cc69) no-repeat center/3px 100%'
+            }}></div>
+          </div>
+          <div style={{ position: 'fixed', bottom: '6rem', right: '2rem', display: 'flex' }}>
+            <div style={{ width: '5rem', height: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => { handleScroll(10, 500, -75) }} className="arrowContainer">
+              <i className="arrow left"></i>
+              <i className="arrow left"></i>
             </div>
-          ))}
+            <div style={{ width: '5rem', height: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => { handleScroll(10, 500, 25) }} className="arrowContainer">
+              <i className="arrow right"></i>
+              <i className="arrow right"></i>
+            </div>
+          </div>
         </div>
       </React.Fragment>
     );
   };
 
+  const renderMobileProjectsPage = () => {
+    return (
+      <React.Fragment>
+        <div style={{ width: '100%', minWidth: '2rem' }}>
+          {projects.map((project, index) => (
+            <>
+              <div
+                className="hoverableSlide"
+                style={{
+                  minHeight: 'min(50vh, 50vw)',
+                  maxHeight: 'min(50vh, 50vw)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'left',
+                  backgroundImage: `url(${project.imageUrl})`,
+                }}>
+                <div
+                  className='information'
+                  onClick={() => { toggleModal(project, true) }}
+                  style={{
+                    height: '100%',
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexDirection: 'column',
+                    padding: '0 2.7rem',
+                  }}>
+                  <p
+                    style={{
+                      fontSize: '5vw',
+                      borderBottom: '1px solid white',
+                      textAlign: 'center',
+                    }}>
+                    {project.name}
+                  </p>
+                </div>
+              </div>
+            </>
+          ))}
+        </div>
+      </React.Fragment>
+    )
+  }
+
   // Build UI
   return (
     <React.Fragment>
       <Container
-        style={{ paddingTop: '2rem', marginBottom: '2rem' }}
+        style={{ paddingTop: '2rem', marginBottom: '2rem', height: `${(is1100px ? 'auto' : '100%')}`, margin: 0, minWidth: '100%' }}
         id='projectsPage'>
         {isLoading ? (
           <div
@@ -303,9 +194,60 @@ export default function ProjectsPage() {
             <Spinner animation='border' variant='light' />
           </div>
         ) : (
-          <>{renderProjectsPage()}</>
+          <>
+            {
+              is1100px ?
+                renderMobileProjectsPage()
+                :
+                renderProjectsPage()
+            }
+          </>
         )}
       </Container>
+      {
+        selectedProject &&
+        <Modal show={showModal} onHide={() => { toggleModal(null, false) }} size="lg">
+          <Modal.Header closeButton>
+            <Modal.Title>{selectedProject.name}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div>
+              <p
+                style={{
+                  fontWeight: 'bold',
+                  color: '#55cc69',
+                  textAlign: 'center',
+                }}>
+                {selectedProject.techStack?.join(', ') ?? 'No listed tech? Strange...'}
+              </p>
+              <p style={{ textAlign: 'center' }}>{selectedProject.description}</p>
+              <div style={{ textAlign: 'center' }}>
+                {selectedProject.liveUrl && (
+                  <a href={selectedProject.liveUrl} target='_blank'>
+                    <FontAwesomeIcon
+                      icon={faGlobe}
+                      size='3x'
+                      color='black'
+                      className='iconLinkStyle'
+                    />
+                  </a>
+                )}
+                {selectedProject.source && (
+                  <a href={selectedProject.source} target='_blank'>
+                    <FontAwesomeIcon
+                      icon={faCode}
+                      size='3x'
+                      color='black'
+                      className='iconLinkStyle'
+                      style={{ marginLeft: '1rem' }}
+                    />
+                  </a>
+                )}
+              </div>
+            </div>
+          </Modal.Body>
+        </Modal>
+      }
     </React.Fragment>
   );
 }

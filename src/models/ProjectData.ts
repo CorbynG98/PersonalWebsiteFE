@@ -4,6 +4,6 @@ export type ProjectData = {
   description: string;
   imageUrl: string;
   liveUrl: string | null | undefined;
-  stars: string | null | undefined;
+  featured: boolean;
   techStack: string[];
 };
