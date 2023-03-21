@@ -1,6 +1,5 @@
 import {
   faCode,
-  faDirections,
   faGlobe,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,10 +7,10 @@ import { GetProjects } from '../../apiclient/apiclient';
 import { ProjectData } from '../../models/ProjectData';
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Carousel, Container, Modal, Spinner, Table } from 'react-bootstrap';
+import { Container, Modal, Spinner } from 'react-bootstrap';
 import { useMediaQuery } from 'react-responsive';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -53,8 +52,28 @@ export default function ProjectsPage() {
   }
 
   const toggleModal = (project: ProjectData | null, show: boolean) => {
-    setSelectedProject(show ? project : null);
-    setShowModal(show)
+    console.log(project);
+    if (project && project.isDescriptionMarkdown && !project.description) {
+      fetch(project.descriptionUrl + `&${new Date()}`, {
+        headers: {
+          'Content-Type': 'text/markdown',
+          'Access-Control-Allow-Origin': 'http://localhost:5173',
+        }
+      })
+        .then(response => {
+          return response.text()
+        })
+        .then(text => {
+          if (project) {
+            project.description = text
+          }
+          setSelectedProject(show ? project : null);
+          setShowModal(show)
+        })
+    } else {
+      setSelectedProject(show ? project : null);
+      setShowModal(show)
+    }
   }
 
   const renderProjectsPage = () => {
@@ -208,7 +227,30 @@ export default function ProjectsPage() {
         selectedProject &&
         <Modal show={showModal} onHide={() => { toggleModal(null, false) }} size="lg">
           <Modal.Header closeButton>
-            <Modal.Title>{selectedProject.name}</Modal.Title>
+            <Modal.Title>
+              <div style={{ display: 'flex' }}>
+                <p style={{ margin: 'auto' }}>{selectedProject.name}</p>
+                {selectedProject.liveUrl && (
+                  <a href={selectedProject.liveUrl} target='_blank' style={{ marginLeft: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <FontAwesomeIcon
+                      icon={faGlobe}
+                      color='black'
+                      className='iconLinkStyle'
+                      style={{ fontSize: '2.5rem' }}
+                    />
+                  </a>
+                )}
+                {selectedProject.source && (
+                  <a href={selectedProject.source} target='_blank' style={{ marginLeft: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <FontAwesomeIcon
+                      icon={faCode}
+                      color='black'
+                      className='iconLinkStyle'
+                      style={{ fontSize: '2.5rem' }}
+                    />
+                  </a>
+                )}
+              </div></Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div>
@@ -220,30 +262,14 @@ export default function ProjectsPage() {
                 }}>
                 {selectedProject.techStack?.join(', ') ?? 'No listed tech? Strange...'}
               </p>
-              <p style={{ textAlign: 'center' }}>{selectedProject.description}</p>
-              <div style={{ textAlign: 'center' }}>
-                {selectedProject.liveUrl && (
-                  <a href={selectedProject.liveUrl} target='_blank'>
-                    <FontAwesomeIcon
-                      icon={faGlobe}
-                      size='3x'
-                      color='black'
-                      className='iconLinkStyle'
-                    />
-                  </a>
-                )}
-                {selectedProject.source && (
-                  <a href={selectedProject.source} target='_blank'>
-                    <FontAwesomeIcon
-                      icon={faCode}
-                      size='3x'
-                      color='black'
-                      className='iconLinkStyle'
-                      style={{ marginLeft: '1rem' }}
-                    />
-                  </a>
-                )}
-              </div>
+              {
+                selectedProject.isDescriptionMarkdown ?
+                  <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                    {selectedProject.description}
+                  </ReactMarkdown>
+                  :
+                  <p style={{ textAlign: 'left' }}>{selectedProject.description}</p>
+              }
             </div>
           </Modal.Body>
         </Modal>
