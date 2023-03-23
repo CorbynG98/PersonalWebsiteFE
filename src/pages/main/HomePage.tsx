@@ -162,7 +162,7 @@ export default function HomePage() {
                   className='mePhoto'
                   style={{ height: '10rem', width: '10rem' }}>
                   <img
-                    src='https://storage.googleapis.com/public_images_ctg/hopefully-square.jpg'
+                    src='https://storage.googleapis.com/public_images_us/hopefully-square.jpg'
                     className='mePhoto'
                     style={{ height: '10rem', width: '10rem' }}
                     alt='Close up of my face in 2019'
@@ -215,9 +215,8 @@ export default function HomePage() {
                   fontWeight: 'bold',
                   color: 'inherit',
                 }}
-                className={`${
-                  hovered.projects ? 'overridePrimaryColourWhite' : ''
-                }`}>
+                className={`${hovered.projects ? 'overridePrimaryColourWhite' : ''
+                  }`}>
                 PROJECTS
               </p>
             </div>
@@ -246,9 +245,8 @@ export default function HomePage() {
                   fontWeight: 'bold',
                   color: 'inherit',
                 }}
-                className={`${
-                  hovered.about ? 'overridePrimaryColourWhite' : ''
-                }`}>
+                className={`${hovered.about ? 'overridePrimaryColourWhite' : ''
+                  }`}>
                 ABOUT
               </p>
             </div>
@@ -276,9 +274,8 @@ export default function HomePage() {
                   fontWeight: 'bold',
                   color: 'inherit',
                 }}
-                className={`colouredWhiteOnHoverOnHover ${
-                  hovered.connect ? 'overridePrimaryColourWhite' : ''
-                }`}>
+                className={`colouredWhiteOnHoverOnHover ${hovered.connect ? 'overridePrimaryColourWhite' : ''
+                  }`}>
                 CONNECT
               </p>
             </div>
@@ -299,7 +296,7 @@ export default function HomePage() {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundImage:
-              'url("https://storage.googleapis.com/public_images_ctg/test-background.svg")',
+              'url("https://storage.googleapis.com/public_images_us/test-background.svg")',
           }}>
           <Nav.Link
             onClick={() => mouseClickApplyActive('home')}
@@ -320,7 +317,7 @@ export default function HomePage() {
                       : { height: '10rem', width: '10rem' }
                   }>
                   <img
-                    src='https://storage.googleapis.com/public_images_ctg/hopefully-square.jpg'
+                    src='https://storage.googleapis.com/public_images_us/hopefully-square.jpg'
                     className='mePhoto'
                     style={
                       hovered.title
@@ -337,18 +334,16 @@ export default function HomePage() {
               </div>
               <div style={{ display: 'flex' }}>
                 <p
-                  className={`typedStyles ${
-                    hovered.title ? 'overridePrimaryColour' : ''
-                  }`}>
+                  className={`typedStyles ${hovered.title ? 'overridePrimaryColour' : ''
+                    }`}>
                   I'm Corbyn Greenwood! ^^ That's me!
                 </p>
               </div>
               <div className='smallBlurb'>
                 <span className='blurb-p'>Software Engineer</span>&nbsp;|&nbsp;
                 <span
-                  className={`blurb-p ${
-                    hovered.title ? 'overridePrimaryColour' : ''
-                  }`}
+                  className={`blurb-p ${hovered.title ? 'overridePrimaryColour' : ''
+                    }`}
                   id='colourBlurb'>
                   Developer
                 </span>

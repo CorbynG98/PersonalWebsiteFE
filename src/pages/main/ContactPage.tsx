@@ -180,7 +180,7 @@ export default function ContactPage() {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundImage:
-                  'url("https://storage.googleapis.com/public_images_ctg/test-background.svg")',
+                  'url("https://storage.googleapis.com/public_images_us/test-background.svg")',
                 flexGrow: 1,
               }}>
               <div>
@@ -375,7 +375,7 @@ export default function ContactPage() {
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundImage:
-                'url("https://storage.googleapis.com/public_images_ctg/test-background.svg")',
+                'url("https://storage.googleapis.com/public_images_us/test-background.svg")',
             }}>
             <div>
               <div style={{ paddingBottom: '3rem' }}>
