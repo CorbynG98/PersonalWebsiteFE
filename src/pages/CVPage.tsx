@@ -5,7 +5,7 @@ import { Spinner } from 'react-bootstrap';
 import { Document, Page } from 'react-pdf/dist/esm/entry.vite';
 import NotyfContext from '../context/NotyfContext';
 
-export default function AboutPage() {
+export default function CVPage() {
   const [loaded, setLoaded] = useState<Boolean>(false);
   const notyf = useContext(NotyfContext);
 

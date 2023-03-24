@@ -7,6 +7,7 @@ import ContactPage from '../pages/main/ContactPage';
 import ProjectsPage from '../pages/main/ProjectsPage';
 import NotFoundPage from '../pages/utility/NotFoundPage';
 import CVPage from '../pages/CVPage';
+import LoginPage from '../pages/LoginPage';
 
 const RoutesComponent = () => {
   return (
@@ -17,6 +18,7 @@ const RoutesComponent = () => {
       <Route path='/About' element={<AboutPage />} />
       <Route path='/Contact' element={<ContactPage />} />
       <Route path='/Resume' element={<CVPage />} />
+      <Route path='/Login' element={<LoginPage />} />
       <Route path='*' element={<NotFoundPage />} />
     </Routes>
   );
