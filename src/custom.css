@@ -23,7 +23,6 @@ body {
 }
 
 @media screen and (max-width: 1100px) {
-
   #contactPage,
   #aboutPage,
   #projectsPage {
@@ -436,7 +435,12 @@ body {
   -webkit-transform: rotate(135deg);
 }
 
-.arrowContainer:hover, .arrowContainer:hover .arrow {
+.arrowContainer:hover,
+.arrowContainer:hover .arrow {
   cursor: pointer;
   border-color: #55cc69;
+}
+
+.react-pdf__Page__canvas {
+  margin: auto !important;
 }

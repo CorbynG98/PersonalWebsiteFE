@@ -21,6 +21,7 @@ const NavBarComponentTop = () => {
     var active = '';
     if (path.toLowerCase().indexOf('home') != -1 || path == '/')
       active = 'home';
+    if (path.toLowerCase().indexOf('resumt') != -1) active = 'resume';
     if (path.toLowerCase().indexOf('projects') != -1) active = 'projects';
     if (path.toLowerCase().indexOf('about') != -1) active = 'about';
     if (path.toLowerCase().indexOf('contact') != -1) active = 'connect';
@@ -34,8 +35,9 @@ const NavBarComponentTop = () => {
           variant='dark'
           sticky='top'
           expand='sm'
-          className={`m-auto navSemiBackground ${activeLink == 'home' ? 'd-none' : ''
-            }`}
+          className={`m-auto navSemiBackground ${
+            activeLink == 'home' || activeLink == 'resume' ? 'd-none' : ''
+          }`}
           style={{
             minHeight: '4rem',
             paddingBottom: 0,
@@ -97,15 +99,16 @@ const NavBarComponentTop = () => {
                     style={
                       is575px
                         ? {
-                          textAlign: 'center',
-                          borderTop: '2px solid white',
-                          borderBottom: '1px solid white',
-                          height: '3rem',
-                        }
+                            textAlign: 'center',
+                            borderTop: '2px solid white',
+                            borderBottom: '1px solid white',
+                            height: '3rem',
+                          }
                         : {}
                     }
-                    className={`linkStyleTopNav ${is575px ? 'linkStyleBackgroundHover' : ''
-                      } ${activeLink == 'projects' ? `topNavActiveLink` : ''}`}>
+                    className={`linkStyleTopNav ${
+                      is575px ? 'linkStyleBackgroundHover' : ''
+                    } ${activeLink == 'projects' ? `topNavActiveLink` : ''}`}>
                     PROJECTS
                   </Nav.Link>
                   <Nav.Link
@@ -115,15 +118,16 @@ const NavBarComponentTop = () => {
                     style={
                       is575px
                         ? {
-                          textAlign: 'center',
-                          borderTop: '1px solid white',
-                          borderBottom: '1px solid white',
-                          height: '3rem',
-                        }
+                            textAlign: 'center',
+                            borderTop: '1px solid white',
+                            borderBottom: '1px solid white',
+                            height: '3rem',
+                          }
                         : {}
                     }
-                    className={`linkStyleTopNav ${is575px ? 'linkStyleBackgroundHover' : ''
-                      } ${activeLink == 'about' ? `topNavActiveLink` : ''}`}>
+                    className={`linkStyleTopNav ${
+                      is575px ? 'linkStyleBackgroundHover' : ''
+                    } ${activeLink == 'about' ? `topNavActiveLink` : ''}`}>
                     ABOUT
                   </Nav.Link>
                   <Nav.Link
@@ -133,15 +137,16 @@ const NavBarComponentTop = () => {
                     style={
                       is575px
                         ? {
-                          textAlign: 'center',
-                          borderTop: '1px solid white',
-                          borderBottom: '2px solid white',
-                          height: '3rem',
-                        }
+                            textAlign: 'center',
+                            borderTop: '1px solid white',
+                            borderBottom: '2px solid white',
+                            height: '3rem',
+                          }
                         : {}
                     }
-                    className={`linkStyleTopNav ${is575px ? 'linkStyleBackgroundHover' : ''
-                      } ${activeLink == 'connect' ? `topNavActiveLink` : ''}`}>
+                    className={`linkStyleTopNav ${
+                      is575px ? 'linkStyleBackgroundHover' : ''
+                    } ${activeLink == 'connect' ? `topNavActiveLink` : ''}`}>
                     CONNECT
                   </Nav.Link>
                 </Nav>

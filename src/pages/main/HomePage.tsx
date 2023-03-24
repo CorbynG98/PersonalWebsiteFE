@@ -215,8 +215,9 @@ export default function HomePage() {
                   fontWeight: 'bold',
                   color: 'inherit',
                 }}
-                className={`${hovered.projects ? 'overridePrimaryColourWhite' : ''
-                  }`}>
+                className={`${
+                  hovered.projects ? 'overridePrimaryColourWhite' : ''
+                }`}>
                 PROJECTS
               </p>
             </div>
@@ -245,8 +246,9 @@ export default function HomePage() {
                   fontWeight: 'bold',
                   color: 'inherit',
                 }}
-                className={`${hovered.about ? 'overridePrimaryColourWhite' : ''
-                  }`}>
+                className={`${
+                  hovered.about ? 'overridePrimaryColourWhite' : ''
+                }`}>
                 ABOUT
               </p>
             </div>
@@ -274,8 +276,9 @@ export default function HomePage() {
                   fontWeight: 'bold',
                   color: 'inherit',
                 }}
-                className={`colouredWhiteOnHoverOnHover ${hovered.connect ? 'overridePrimaryColourWhite' : ''
-                  }`}>
+                className={`colouredWhiteOnHoverOnHover ${
+                  hovered.connect ? 'overridePrimaryColourWhite' : ''
+                }`}>
                 CONNECT
               </p>
             </div>
@@ -334,16 +337,18 @@ export default function HomePage() {
               </div>
               <div style={{ display: 'flex' }}>
                 <p
-                  className={`typedStyles ${hovered.title ? 'overridePrimaryColour' : ''
-                    }`}>
+                  className={`typedStyles ${
+                    hovered.title ? 'overridePrimaryColour' : ''
+                  }`}>
                   I'm Corbyn Greenwood! ^^ That's me!
                 </p>
               </div>
               <div className='smallBlurb'>
                 <span className='blurb-p'>Software Engineer</span>&nbsp;|&nbsp;
                 <span
-                  className={`blurb-p ${hovered.title ? 'overridePrimaryColour' : ''
-                    }`}
+                  className={`blurb-p ${
+                    hovered.title ? 'overridePrimaryColour' : ''
+                  }`}
                   id='colourBlurb'>
                   Developer
                 </span>

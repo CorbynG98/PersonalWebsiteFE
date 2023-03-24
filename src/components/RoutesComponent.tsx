@@ -6,6 +6,7 @@ import HomePage from '../pages/main/HomePage';
 import ContactPage from '../pages/main/ContactPage';
 import ProjectsPage from '../pages/main/ProjectsPage';
 import NotFoundPage from '../pages/utility/NotFoundPage';
+import CVPage from '../pages/CVPage';
 
 const RoutesComponent = () => {
   return (
@@ -15,6 +16,7 @@ const RoutesComponent = () => {
       <Route path='/Projects' element={<ProjectsPage />} />
       <Route path='/About' element={<AboutPage />} />
       <Route path='/Contact' element={<ContactPage />} />
+      <Route path='/Resume' element={<CVPage />} />
       <Route path='*' element={<NotFoundPage />} />
     </Routes>
   );

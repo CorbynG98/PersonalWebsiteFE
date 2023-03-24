@@ -14,6 +14,7 @@ export default function App() {
         var active = '';
         if (path.toLowerCase().indexOf('home') != -1 || path == '/')
           active = 'home';
+        if (path.toLowerCase().indexOf('resume') != -1) active = 'resume';
         if (path.toLowerCase().indexOf('projects') != -1) active = 'projects';
         if (path.toLowerCase().indexOf('about') != -1) active = 'about';
         if (path.toLowerCase().indexOf('contact') != -1) active = 'connect';
