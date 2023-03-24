@@ -82,13 +82,10 @@ export const RevokeSession = async (
 ) => {
   const endpoint = `/session/revoke/${sessionId}`;
   try {
-    await axios.delete<null, AxiosResponse>(
-      endpoint,
-      {
-        cancelToken: cancelToken?.token,
-      },
-    );
-    return Promise.resolve("Session revoked");
+    await axios.delete<null, AxiosResponse>(endpoint, {
+      cancelToken: cancelToken?.token,
+    });
+    return Promise.resolve('Session revoked');
   } catch (err) {
     return Promise.reject(err);
   }

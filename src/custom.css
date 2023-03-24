@@ -24,7 +24,6 @@ body {
 }
 
 @media screen and (max-width: 1100px) {
-
   #contactPage,
   #aboutPage,
   #projectsPage,
@@ -448,12 +447,16 @@ body {
   margin: auto !important;
 }
 
-#profile-tab-tab-profile, #profile-tab-tab-sessions, #profile-tab-tab-authActivity {
+#profile-tab-tab-profile,
+#profile-tab-tab-sessions,
+#profile-tab-tab-authActivity {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.middleColumn, .leftColumn, .rightColumn {
+.middleColumn,
+.leftColumn,
+.rightColumn {
   border-right: 0.5px solid black;
   border-left: 0.5px solid black;
   padding-right: 1rem;

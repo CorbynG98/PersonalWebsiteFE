@@ -44,19 +44,22 @@ export default function AdminPage() {
       <Container id='adminPage' style={{ paddingTop: '2rem' }}>
         <Card style={{ padding: '2rem' }}>
           <Tabs
-            id="profile-tab"
+            id='profile-tab'
             activeKey={key}
             onSelect={(k) => setKey(k ?? 'profile')}
-            className="mb-3 noBottomBorder"
-            mountOnEnter={true}
-          >
-            <Tab eventKey="profile" title="Profile" className="noBottomBorder" mountOnEnter={true}>
+            className='mb-3 noBottomBorder'
+            mountOnEnter={true}>
+            <Tab
+              eventKey='profile'
+              title='Profile'
+              className='noBottomBorder'
+              mountOnEnter={true}>
               <ProfileComponent />
             </Tab>
-            <Tab eventKey="sessions" title="Sessions" mountOnEnter={true}>
+            <Tab eventKey='sessions' title='Sessions' mountOnEnter={true}>
               <SessionComponent />
             </Tab>
-            <Tab eventKey="authActivity" title="Activity" mountOnEnter={true}>
+            <Tab eventKey='authActivity' title='Activity' mountOnEnter={true}>
               <ActivityComponent />
             </Tab>
           </Tabs>

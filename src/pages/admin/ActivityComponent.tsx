@@ -1,4 +1,4 @@
-import React, { } from 'react';
+import React from 'react';
 import { Card, Container } from 'react-bootstrap';
 import { useMediaQuery } from 'react-responsive';
 
@@ -16,7 +16,9 @@ export default function ActivityComponent() {
           flexGrow: 1,
         }}
         id='profileComponent'>
-        <p style={{ fontSize: '2rem', fontWeight: 'bold' }}>Activity Component</p>
+        <p style={{ fontSize: '2rem', fontWeight: 'bold' }}>
+          Activity Component
+        </p>
       </Container>
     </React.Fragment>
   );
