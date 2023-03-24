@@ -10,7 +10,7 @@ import { signIn } from '../context/slices/auth_slice';
 import { store } from '../context/store';
 import { LoginData } from '../models/LoginData';
 import { State } from '../models/State';
-import { getCookie } from '../storageclient/storageclient';
+import { getCookie, removeCookie } from '../storageclient/storageclient';
 
 export default function LoginPage() {
   const notyf = useContext(NotyfContext);
@@ -32,6 +32,7 @@ export default function LoginPage() {
           if (!result) {
             // Run logout function
             store.dispatch({ type: 'SIGN_OUT' });
+            removeCookie('cgAuthData');
           }
         });
       }
@@ -56,7 +57,7 @@ export default function LoginPage() {
       );
       setLoginData({} as LoginData);
       setLoginLoading(false);
-      navigate('/Home');
+      navigate('/Admin');
     } catch (err: any) {
       // Handle errors here with some state variables probably
       notyf.error('Invalid username or password');
@@ -143,7 +144,13 @@ export default function LoginPage() {
               <div style={{ display: 'flex' }}>
                 <p>For now though,&nbsp;</p>
                 <Nav.Link as={Link} to='/Home' style={{ color: '#55cc69' }}>
-                  Go home?
+                  go home?
+                </Nav.Link>
+              </div>
+              <div style={{ display: 'flex' }}>
+                <p>Or continue to&nbsp;</p>
+                <Nav.Link as={Link} to='/Admin' style={{ color: '#55cc69' }}>
+                  profile page?
                 </Nav.Link>
               </div>
             </div>

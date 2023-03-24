@@ -1,6 +1,7 @@
 import { LoginData, LoginResponse } from '../../models/LoginData';
 import { AxiosResponse, CancelTokenSource } from 'axios';
 import { default as axios } from '../../interceptors/axiosCoreInterceptor';
+import { SessionData } from '../../models/SessionData';
 
 export const Authenticate = async (
   data: LoginData,
@@ -53,6 +54,41 @@ export const CheckAuth = async (
       },
     );
     return Promise.resolve(response.data);
+  } catch (err) {
+    return Promise.reject(err);
+  }
+};
+
+export const GetSessions = async (
+  cancelToken: CancelTokenSource | undefined | null = null,
+) => {
+  const endpoint = '/session';
+  try {
+    var response = await axios.get<null, AxiosResponse<SessionData[]>>(
+      endpoint,
+      {
+        cancelToken: cancelToken?.token,
+      },
+    );
+    return Promise.resolve(response.data);
+  } catch (err) {
+    return Promise.reject(err);
+  }
+};
+
+export const RevokeSession = async (
+  sessionId: string,
+  cancelToken: CancelTokenSource | undefined | null = null,
+) => {
+  const endpoint = `/session/revoke/${sessionId}`;
+  try {
+    await axios.delete<null, AxiosResponse>(
+      endpoint,
+      {
+        cancelToken: cancelToken?.token,
+      },
+    );
+    return Promise.resolve("Session revoked");
   } catch (err) {
     return Promise.reject(err);
   }

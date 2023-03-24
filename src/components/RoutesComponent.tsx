@@ -8,6 +8,7 @@ import ProjectsPage from '../pages/main/ProjectsPage';
 import NotFoundPage from '../pages/utility/NotFoundPage';
 import CVPage from '../pages/CVPage';
 import LoginPage from '../pages/LoginPage';
+import AdminPage from '../pages/admin/AdminPage';
 
 const RoutesComponent = () => {
   return (
@@ -19,6 +20,7 @@ const RoutesComponent = () => {
       <Route path='/Contact' element={<ContactPage />} />
       <Route path='/Resume' element={<CVPage />} />
       <Route path='/Login' element={<LoginPage />} />
+      <Route path='/Admin' element={<AdminPage />} />
       <Route path='*' element={<NotFoundPage />} />
     </Routes>
   );
