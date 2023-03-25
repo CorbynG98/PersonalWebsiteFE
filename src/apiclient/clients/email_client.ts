@@ -1,15 +1,15 @@
-import { AboutYouData } from '../../models/AboutYouData';
-import { EmailData } from '../../models/EmailData';
+import { default as axios } from '@src/interceptors/axiosCoreInterceptor';
+import { AboutYouData } from '@src/models/AboutYouData';
+import { EmailResource } from '@src/models/EmailResource';
 import { AxiosResponse, CancelTokenSource } from 'axios';
-import { default as axios } from '../../interceptors/axiosCoreInterceptor';
 
 export const SendContactEmail = async (
-  emailData: EmailData,
+  emailData: EmailResource,
   cancelToken: CancelTokenSource | undefined | null = null,
 ) => {
   const endpoint = '/email/contact';
   try {
-    await axios.post<EmailData, AxiosResponse<AboutYouData>>(
+    await axios.post<EmailResource, AxiosResponse<AboutYouData>>(
       endpoint,
       emailData,
       { cancelToken: cancelToken?.token },

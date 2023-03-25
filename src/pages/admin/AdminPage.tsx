@@ -1,11 +1,11 @@
+import { CheckAuth } from '@src/apiclient/apiclient';
+import { store } from '@src/context/store';
+import { getCookie, removeCookie } from '@src/storageclient/storageclient';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Card, Container, Tab, Tabs } from 'react-bootstrap';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
-import { CheckAuth } from '../../apiclient/apiclient';
-import { store } from '../../context/store';
-import { getCookie, removeCookie } from '../../storageclient/storageclient';
 import ActivityComponent from './ActivityComponent';
 import ProfileComponent from './ProfileComponent';
 import SessionComponent from './SessionComponent';

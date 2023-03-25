@@ -1,5 +1,5 @@
-import React from 'react';
 import { Notyf } from 'notyf';
+import React from 'react';
 
 export default React.createContext(
   new Notyf({

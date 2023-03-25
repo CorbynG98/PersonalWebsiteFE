@@ -1,22 +1,22 @@
+import { CheckAuth } from '@src/apiclient/apiclient';
+import NotyfContext from '@src/context/NotyfContext';
+import { signIn } from '@src/context/slices/auth_slice';
+import { store } from '@src/context/store';
+import { AuthResource } from '@src/models/AuthResource';
+import { State } from '@src/models/State';
+import { getCookie, removeCookie } from '@src/storageclient/storageclient';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Card, Container, Form, Nav, Spinner } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { Link, useNavigate } from 'react-router-dom';
-import { CheckAuth } from '../apiclient/apiclient';
-import NotyfContext from '../context/NotyfContext';
-import { signIn } from '../context/slices/auth_slice';
-import { store } from '../context/store';
-import { LoginData } from '../models/LoginData';
-import { State } from '../models/State';
-import { getCookie, removeCookie } from '../storageclient/storageclient';
 
 export default function LoginPage() {
   const notyf = useContext(NotyfContext);
   const navigate = useNavigate();
 
-  const [loginData, setLoginData] = useState<LoginData>({} as LoginData);
+  const [loginData, setLoginData] = useState<AuthResource>({} as AuthResource);
   const [loginLoading, setLoginLoading] = useState<boolean>(false);
 
   const is991px = useMediaQuery({ query: '(max-width: 991px)' });
@@ -55,7 +55,7 @@ export default function LoginPage() {
           password: loginData.password,
         }),
       );
-      setLoginData({} as LoginData);
+      setLoginData({} as AuthResource);
       setLoginLoading(false);
       navigate('/Admin');
     } catch (err: any) {

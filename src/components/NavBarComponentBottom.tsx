@@ -1,14 +1,16 @@
+import { setActiveLink } from '@src/context/slices/auth_slice';
+import { store } from '@src/context/store';
+import { State } from '@src/models/State';
+import { useEffect } from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { setActiveLink } from '../context/slices/auth_slice';
-import { State } from '../models/State';
-import { store } from '../context/store';
-import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { Link } from 'react-router-dom';
 
 const NavBarComponentBottom = () => {
   const activeLink = useSelector((state: State) => state.activeLink);
+  const isLoggedIn = useSelector((state: State) => state.isLoggedIn);
+  const username = useSelector((state: State) => state.username);
   const mouseClickApplyActive = (id: string) => {
     store.dispatch(setActiveLink(id));
   };
@@ -23,6 +25,9 @@ const NavBarComponentBottom = () => {
     if (path.toLowerCase().indexOf('projects') != -1) active = 'projects';
     if (path.toLowerCase().indexOf('about') != -1) active = 'about';
     if (path.toLowerCase().indexOf('contact') != -1) active = 'connect';
+    // Admin links. Bundle login and admin to admin active
+    if (path.toLowerCase().indexOf('admin') != -1) active = 'admin';
+    if (path.toLowerCase().indexOf('login') != -1) active = 'admin';
     store.dispatch(setActiveLink(active));
   });
 
@@ -47,7 +52,7 @@ const NavBarComponentBottom = () => {
           to='/Home'
           onClick={() => mouseClickApplyActive('home')}
           style={{
-            width: '25%',
+            width: '22%',
             height: '4rem',
             display: 'flex',
             borderTop: '2px solid white',
@@ -65,7 +70,7 @@ const NavBarComponentBottom = () => {
           to='/Projects'
           onClick={() => mouseClickApplyActive('projects')}
           style={{
-            width: '25%',
+            width: '22%',
             height: '4rem',
             display: 'flex',
             borderTop: '2px solid white',
@@ -81,10 +86,30 @@ const NavBarComponentBottom = () => {
         </Nav.Link>
         <Nav.Link
           as={Link}
+          to={isLoggedIn ? '/Admin' : '/Login'}
+          onClick={() => mouseClickApplyActive('connect')}
+          style={{
+            width: '12%',
+            height: '4rem',
+            display: 'flex',
+            borderTop: '2px solid white',
+            borderLeft: '1px solid white',
+          }}
+          className={`linkStyle ${
+            activeLink == 'admin' ? 'activeLink' : 'notActiveLink'
+          } bottomNavLinkStyle `}>
+          <div style={{ margin: 'auto' }}>
+            <p style={{ margin: 0, padding: 0, color: 'white' }}>
+              {isLoggedIn ? username?.toUpperCase() : 'LOGIN'}
+            </p>
+          </div>
+        </Nav.Link>
+        <Nav.Link
+          as={Link}
           to='/About'
           onClick={() => mouseClickApplyActive('about')}
           style={{
-            width: '25%',
+            width: '22%',
             height: '4rem',
             display: 'flex',
             borderTop: '2px solid white',
@@ -103,7 +128,7 @@ const NavBarComponentBottom = () => {
           to='/Contact'
           onClick={() => mouseClickApplyActive('connect')}
           style={{
-            width: '25%',
+            width: '22%',
             height: '4rem',
             display: 'flex',
             borderTop: '2px solid white',

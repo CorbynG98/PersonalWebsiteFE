@@ -1,13 +1,13 @@
-import { ProjectData } from '../../models/ProjectData';
+import { default as axios } from '@src/interceptors/axiosCoreInterceptor';
+import { ProjectResource } from '@src/models/ProjectResource';
 import { AxiosResponse, CancelTokenSource } from 'axios';
-import { default as axios } from '../../interceptors/axiosCoreInterceptor';
 
 export const GetProjects = async (
   cancelToken: CancelTokenSource | undefined | null = null,
-): Promise<ProjectData[]> => {
+): Promise<ProjectResource[]> => {
   const endpoint = '/project';
   try {
-    var response = await axios.get<null, AxiosResponse<ProjectData[]>>(
+    var response = await axios.get<null, AxiosResponse<ProjectResource[]>>(
       endpoint,
       { cancelToken: cancelToken?.token },
     );

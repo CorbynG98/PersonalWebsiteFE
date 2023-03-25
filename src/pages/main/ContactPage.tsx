@@ -1,22 +1,24 @@
-import { SendContactEmail } from '../../apiclient/apiclient';
-import { EmailData } from '../../models/EmailData';
-import React, { useState, useContext } from 'react';
-import { Button, Container, Form, Spinner } from 'react-bootstrap';
-import Snowfall from 'react-snowfall';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faGithub,
   faHackerrank,
   faLinkedin,
 } from '@fortawesome/free-brands-svg-icons';
 import { faBeerMugEmpty } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { SendContactEmail } from '@src/apiclient/apiclient';
+import NotyfContext from '@src/context/NotyfContext';
+import { EmailResource } from '@src/models/EmailResource';
+import React, { useContext, useState } from 'react';
+import { Button, Container, Form, Spinner } from 'react-bootstrap';
 import { useMediaQuery } from 'react-responsive';
-import NotyfContext from '../../context/NotyfContext';
+import Snowfall from 'react-snowfall';
 
 export default function ContactPage() {
   const notyf = useContext(NotyfContext);
 
-  const [emailData, setEmailData] = useState<EmailData>({} as EmailData);
+  const [EmailResource, setEmailResource] = useState<EmailResource>(
+    {} as EmailResource,
+  );
   const [formValidated, setFormValidated] = useState<boolean>(true);
   const [sendEmailLoading, setSendEmailLoading] = useState<boolean>(false);
   const is1100px = useMediaQuery({ query: '(max-width: 1100px)' });
@@ -32,10 +34,10 @@ export default function ContactPage() {
     }
 
     setSendEmailLoading(true);
-    SendContactEmail(emailData)
+    SendContactEmail(EmailResource)
       .then(() => {
         notyf.success('Email has been sent :)');
-        setEmailData({} as EmailData); // Reset email data
+        setEmailResource({} as EmailResource); // Reset email data
         setSendEmailLoading(false);
       })
       .catch(() => {
@@ -84,9 +86,9 @@ export default function ContactPage() {
                       type='text'
                       className='input-box'
                       placeholder='Full name'
-                      value={emailData.fullname ?? ''}
+                      value={EmailResource.fullname ?? ''}
                       onChange={(event) =>
-                        setEmailData((prev) => ({
+                        setEmailResource((prev) => ({
                           ...prev,
                           fullname: event.target.value,
                         }))
@@ -112,9 +114,9 @@ export default function ContactPage() {
                       type='email'
                       className='input-box'
                       placeholder='Your Email Address'
-                      value={emailData.from ?? ''}
+                      value={EmailResource.from ?? ''}
                       onChange={(event) =>
-                        setEmailData((prev) => ({
+                        setEmailResource((prev) => ({
                           ...prev,
                           from: event.target.value,
                         }))
@@ -139,9 +141,9 @@ export default function ContactPage() {
                       rows={5}
                       className='input-box text-area'
                       placeholder='Email Content'
-                      value={emailData.content ?? ''}
+                      value={EmailResource.content ?? ''}
                       onChange={(event) =>
-                        setEmailData((prev) => ({
+                        setEmailResource((prev) => ({
                           ...prev,
                           content: event.target.value,
                         }))
@@ -278,9 +280,9 @@ export default function ContactPage() {
                     type='text'
                     className='input-box'
                     placeholder='Full name'
-                    value={emailData.fullname ?? ''}
+                    value={EmailResource.fullname ?? ''}
                     onChange={(event) =>
-                      setEmailData((prev) => ({
+                      setEmailResource((prev) => ({
                         ...prev,
                         fullname: event.target.value,
                       }))
@@ -306,9 +308,9 @@ export default function ContactPage() {
                     type='email'
                     className='input-box'
                     placeholder='Your Email Address'
-                    value={emailData.from ?? ''}
+                    value={EmailResource.from ?? ''}
                     onChange={(event) =>
-                      setEmailData((prev) => ({
+                      setEmailResource((prev) => ({
                         ...prev,
                         from: event.target.value,
                       }))
@@ -333,9 +335,9 @@ export default function ContactPage() {
                     rows={5}
                     className='input-box text-area'
                     placeholder='Email Content'
-                    value={emailData.content ?? ''}
+                    value={EmailResource.content ?? ''}
                     onChange={(event) =>
-                      setEmailData((prev) => ({
+                      setEmailResource((prev) => ({
                         ...prev,
                         content: event.target.value,
                       }))

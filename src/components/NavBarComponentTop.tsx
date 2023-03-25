@@ -1,14 +1,16 @@
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { setActiveLink } from '../context/slices/auth_slice';
-import { State } from '../models/State';
-import { store } from '../context/store';
-import { useEffect, useState } from 'react';
+import { setActiveLink } from '@src/context/slices/auth_slice';
+import { store } from '@src/context/store';
+import { State } from '@src/models/State';
+import { useEffect } from 'react';
+import { Container, Nav, Navbar } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
+import { Link } from 'react-router-dom';
 
 const NavBarComponentTop = () => {
   const activeLink = useSelector((state: State) => state.activeLink);
+  const isLoggedIn = useSelector((state: State) => state.isLoggedIn);
+  const username = useSelector((state: State) => state.username);
   const mouseClickApplyActive = (id: string) => {
     store.dispatch(setActiveLink(id));
   };
@@ -25,6 +27,9 @@ const NavBarComponentTop = () => {
     if (path.toLowerCase().indexOf('projects') != -1) active = 'projects';
     if (path.toLowerCase().indexOf('about') != -1) active = 'about';
     if (path.toLowerCase().indexOf('contact') != -1) active = 'connect';
+    // Admin links. Bundle login and admin to admin active
+    if (path.toLowerCase().indexOf('admin') != -1) active = 'admin';
+    if (path.toLowerCase().indexOf('login') != -1) active = 'admin';
     store.dispatch(setActiveLink(active));
   });
 
@@ -148,6 +153,25 @@ const NavBarComponentTop = () => {
                       is575px ? 'linkStyleBackgroundHover' : ''
                     } ${activeLink == 'connect' ? `topNavActiveLink` : ''}`}>
                     CONNECT
+                  </Nav.Link>
+                  <Nav.Link
+                    as={Link}
+                    to={isLoggedIn ? '/Admin' : '/Login'}
+                    onClick={() => mouseClickApplyActive('connect')}
+                    style={
+                      is575px
+                        ? {
+                            textAlign: 'center',
+                            borderTop: '1px solid white',
+                            borderBottom: '2px solid white',
+                            height: '3rem',
+                          }
+                        : {}
+                    }
+                    className={`linkStyleTopNav ${
+                      is575px ? 'linkStyleBackgroundHover' : ''
+                    } ${activeLink == 'connect' ? `topNavActiveLink` : ''}`}>
+                    {isLoggedIn ? username?.toUpperCase() : 'LOGIN'}
                   </Nav.Link>
                 </Nav>
               </Navbar.Collapse>

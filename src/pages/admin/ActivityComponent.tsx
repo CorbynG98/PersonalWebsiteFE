@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { useMediaQuery } from 'react-responsive';
 
 export default function ActivityComponent() {

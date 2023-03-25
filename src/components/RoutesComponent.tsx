@@ -1,14 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
 // CORE PAGES =====================
-import AboutPage from '../pages/main/AboutPage';
-import HomePage from '../pages/main/HomePage';
+import AboutPage from '@src/pages/main/AboutPage';
+import HomePage from '@src/pages/main/HomePage';
 // UTILITY PAGES ===================
-import ContactPage from '../pages/main/ContactPage';
-import ProjectsPage from '../pages/main/ProjectsPage';
-import NotFoundPage from '../pages/utility/NotFoundPage';
-import CVPage from '../pages/CVPage';
-import LoginPage from '../pages/LoginPage';
-import AdminPage from '../pages/admin/AdminPage';
+import AdminPage from '@src/pages/admin/AdminPage';
+import CVPage from '@src/pages/CVPage';
+import LoginPage from '@src/pages/LoginPage';
+import ContactPage from '@src/pages/main/ContactPage';
+import ProjectsPage from '@src/pages/main/ProjectsPage';
+import NotFoundPage from '@src/pages/utility/NotFoundPage';
 
 const RoutesComponent = () => {
   return (

@@ -1,6 +1,6 @@
-import { AboutYouData } from '../../models/AboutYouData';
+import { default as axios } from '@src/interceptors/axiosCoreInterceptor';
+import { AboutYouData } from '@src/models/AboutYouData';
 import { AxiosResponse, CancelTokenSource } from 'axios';
-import { default as axios } from '../../interceptors/axiosCoreInterceptor';
 
 export const GetAboutYouData = async (
   cancelToken: CancelTokenSource | undefined | null = null,

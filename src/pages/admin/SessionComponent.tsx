@@ -1,33 +1,24 @@
-import { faL, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { GetSessions, RevokeSession } from '@src/apiclient/apiclient';
+import NotyfContext from '@src/context/NotyfContext';
+import { SessionResource } from '@src/models/SessionResource';
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
-import {
-  Button,
-  Col,
-  Container,
-  ListGroup,
-  Row,
-  Spinner,
-  Table,
-} from 'react-bootstrap';
-import { useMediaQuery } from 'react-responsive';
-import { GetSessions, RevokeSession } from '../../apiclient/apiclient';
-import { store } from '../../context/store';
-import { SessionData } from '../../models/SessionData';
-import { getCookie, removeCookie } from '../../storageclient/storageclient';
-import Moment from 'react-moment';
 import 'moment-timezone';
+import React, { useContext, useEffect, useState } from 'react';
+import { Button, Container, Spinner, Table } from 'react-bootstrap';
+import Moment from 'react-moment';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import NotyfContext from '../../context/NotyfContext';
 
 export default function SessionComponent() {
-  const [sessions, setSessions] = useState<SessionData[]>([] as SessionData[]);
+  const [sessions, setSessions] = useState<SessionResource[]>(
+    [] as SessionResource[],
+  );
   const [sessionsLoaded, setSessionsLoaded] = useState<boolean>(false);
   const [revokingSession, setRevokingSession] = useState<string | null>(null);
   const notyf = useContext(NotyfContext);
-
-  const is991px = useMediaQuery({ query: '(max-width: 991px)' });
+  const navigate = useNavigate();
 
   // UseEffect to check auth and signout if need be
   useEffect(() => {
@@ -76,9 +67,6 @@ export default function SessionComponent() {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexGrow: 1,
         }}
         id='profileComponent'>
         <p style={{ fontSize: '2rem', fontWeight: 'bold' }}>Active sessions</p>

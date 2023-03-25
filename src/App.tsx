@@ -1,8 +1,8 @@
-import { Renderer } from './pages/Renderer';
+import { initBaseData, setActiveLink } from '@src/context/slices/auth_slice';
 import { useEffect } from 'react';
 import { Provider } from 'react-redux';
-import { initBaseData, setActiveLink } from './context/slices/auth_slice';
 import { store } from './context/store';
+import { Renderer } from './pages/Renderer';
 import ErrorBoundary from './pages/utility/ErrorBoundry';
 
 export default function App() {
@@ -18,6 +18,9 @@ export default function App() {
         if (path.toLowerCase().indexOf('projects') != -1) active = 'projects';
         if (path.toLowerCase().indexOf('about') != -1) active = 'about';
         if (path.toLowerCase().indexOf('contact') != -1) active = 'connect';
+        // Admin links. Bundle login and admin to admin active
+        if (path.toLowerCase().indexOf('admin') != -1) active = 'admin';
+        if (path.toLowerCase().indexOf('login') != -1) active = 'admin';
         store.dispatch(initBaseData());
         store.dispatch(setActiveLink(active));
       }

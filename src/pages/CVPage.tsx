@@ -1,9 +1,9 @@
 import { faCloudArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import NotyfContext from '@src/context/NotyfContext';
 import React, { useContext, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { Document, Page } from 'react-pdf/dist/esm/entry.vite';
-import NotyfContext from '../context/NotyfContext';
 
 export default function CVPage() {
   const [loaded, setLoaded] = useState<Boolean>(false);

@@ -1,6 +1,6 @@
-import { signOut } from '../context/slices/auth_slice';
-import { store } from '../context/store';
-import { getCookie } from '../storageclient/storageclient';
+import { signOut } from '@src/context/slices/auth_slice';
+import { store } from '@src/context/store';
+import { getCookie } from '@src/storageclient/storageclient';
 import axios from 'axios';
 import { Notyf } from 'notyf';
 import appSettings from './appsettings.json';

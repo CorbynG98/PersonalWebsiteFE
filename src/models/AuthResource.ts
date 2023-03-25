@@ -1,9 +1,9 @@
-export type LoginData = {
+export type AuthResource = {
   username: string | null | undefined;
   password: string | null | undefined;
 };
 
-export type LoginResponse = {
+export type AuthData = {
   username: string | null | undefined;
   sessionToken: string | null | undefined;
 };

@@ -1,10 +1,7 @@
-import {
-  faCircleExclamation,
-  faSkullCrossbones,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { Container, Button, Nav } from 'react-bootstrap';
+import { Button, Container, Nav } from 'react-bootstrap';
 
 export default class ErrorBoundary extends React.Component<any, any> {
   constructor(props: any) {

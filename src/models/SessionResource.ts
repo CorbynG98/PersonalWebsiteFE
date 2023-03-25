@@ -1,4 +1,4 @@
-export interface SessionData {
+export interface SessionResource {
   id: string;
   createdAt: string;
   currentSession: boolean;

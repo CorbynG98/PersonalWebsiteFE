@@ -1,11 +1,11 @@
-import { Authenticate, Signout } from '../../apiclient/apiclient';
-import { LoginData } from '../../models/LoginData';
-import { State } from '../../models/State';
+import { Authenticate, Signout } from '@src/apiclient/apiclient';
+import { AuthResource } from '@src/models/AuthResource';
+import { State } from '@src/models/State';
 import {
   getCookie,
   removeCookie,
   setAuthCookie,
-} from '../../storageclient/storageclient';
+} from '@src/storageclient/storageclient';
 import { CancelTokenSource } from 'axios';
 import { ThunkAction } from 'redux-thunk';
 
@@ -49,7 +49,7 @@ export const initBaseData =
 
 export const signIn =
   (
-    loginData: LoginData,
+    loginData: AuthResource,
     cancelToken: CancelTokenSource | undefined | null = null,
   ): ThunkAction<void, State, unknown, Action> =>
   async (dispatch) => {

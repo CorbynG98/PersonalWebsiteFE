@@ -1,9 +1,9 @@
+import { setActiveLink } from '@src/context/slices/auth_slice';
+import { store } from '@src/context/store';
 import React, { useEffect, useState } from 'react';
 import { Nav } from 'react-bootstrap';
 import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
-import { setActiveLink } from '../../context/slices/auth_slice';
-import { store } from '../../context/store';
 // Constants settings
 /*Play with these constants*/
 const columns = 2;

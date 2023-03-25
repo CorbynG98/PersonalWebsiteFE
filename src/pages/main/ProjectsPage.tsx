@@ -1,12 +1,12 @@
 import { faCode, faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { GetProjects } from '../../apiclient/apiclient';
-import { ProjectData } from '../../models/ProjectData';
+import { GetProjects } from '@src/apiclient/apiclient';
+import { ProjectResource } from '@src/models/ProjectResource';
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { Container, Modal, Spinner } from 'react-bootstrap';
-import { useMediaQuery } from 'react-responsive';
 import ReactMarkdown from 'react-markdown';
+import { useMediaQuery } from 'react-responsive';
 import rehypeRaw from 'rehype-raw';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -15,10 +15,11 @@ import 'swiper/css/scrollbar';
 
 export default function ProjectsPage() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [projects, setProjects] = useState<ProjectData[]>([] as ProjectData[]);
-  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(
-    null,
+  const [projects, setProjects] = useState<ProjectResource[]>(
+    [] as ProjectResource[],
   );
+  const [selectedProject, setSelectedProject] =
+    useState<ProjectResource | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
   const elementRef = useRef<HTMLDivElement | null>(null);
 
@@ -52,7 +53,7 @@ export default function ProjectsPage() {
     }, speed);
   };
 
-  const toggleModal = (project: ProjectData | null, show: boolean) => {
+  const toggleModal = (project: ProjectResource | null, show: boolean) => {
     console.log(project);
     if (project && project.isDescriptionMarkdown && !project.description) {
       fetch(project.descriptionUrl + `&${new Date()}`, {

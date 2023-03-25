@@ -1,18 +1,18 @@
-import { LoginData, LoginResponse } from '../../models/LoginData';
+import { default as axios } from '@src/interceptors/axiosCoreInterceptor';
+import { AuthData, AuthResource } from '@src/models/AuthResource';
+import { SessionResource } from '@src/models/SessionResource';
 import { AxiosResponse, CancelTokenSource } from 'axios';
-import { default as axios } from '../../interceptors/axiosCoreInterceptor';
-import { SessionData } from '../../models/SessionData';
 
 export const Authenticate = async (
-  data: LoginData,
+  data: AuthResource,
   cancelToken: CancelTokenSource | undefined | null = null,
-): Promise<LoginResponse> => {
+): Promise<AuthData> => {
   let body = new FormData();
   body.append('username', data.username ?? '');
   body.append('password', data.password ?? '');
   const endpoint = '/user/login';
   try {
-    const response = await axios.post<LoginData, AxiosResponse<LoginResponse>>(
+    const response = await axios.post<AuthResource, AxiosResponse<AuthData>>(
       endpoint,
       body,
       { cancelToken: cancelToken?.token },
@@ -20,7 +20,7 @@ export const Authenticate = async (
     var auth = {
       username: response.data.username,
       sessionToken: response.data.sessionToken,
-    } as LoginResponse;
+    } as AuthData;
     return Promise.resolve(auth);
   } catch (err) {
     return Promise.reject(err);
@@ -64,7 +64,7 @@ export const GetSessions = async (
 ) => {
   const endpoint = '/session';
   try {
-    var response = await axios.get<null, AxiosResponse<SessionData[]>>(
+    var response = await axios.get<null, AxiosResponse<SessionResource[]>>(
       endpoint,
       {
         cancelToken: cancelToken?.token,

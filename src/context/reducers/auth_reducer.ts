@@ -1,5 +1,5 @@
 import { AnyAction } from '@reduxjs/toolkit';
-import { State } from '../../models/State';
+import { State } from '@src/models/State';
 
 const initialState: State = {
   username: null,

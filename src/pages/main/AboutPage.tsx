@@ -1,5 +1,5 @@
-import { GetAboutYouData } from '../../apiclient/apiclient';
-import { AboutYouData } from '../../models/AboutYouData';
+import { GetAboutYouData } from '@src/apiclient/apiclient';
+import { AboutYouData } from '@src/models/AboutYouData';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';

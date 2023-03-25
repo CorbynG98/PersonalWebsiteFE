@@ -1,4 +1,4 @@
-export type EmailData = {
+export type EmailResource = {
   fullname: string;
   from: string;
   content: string;
