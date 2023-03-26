@@ -9,6 +9,7 @@ import 'moment-timezone';
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Container, Spinner, Table } from 'react-bootstrap';
 import Moment from 'react-moment';
+import { useMediaQuery } from 'react-responsive';
 import Swal from 'sweetalert2';
 
 export default function SessionComponent() {
@@ -18,8 +19,12 @@ export default function SessionComponent() {
   const [sessionsLoaded, setSessionsLoaded] = useState<boolean>(false);
   const [revokingSession, setRevokingSession] = useState<string | null>(null);
   const notyf = useContext(NotyfContext);
-  const [pageSize, setPageSize] = useState<number>(10)
-  const [page, setPage] = useState<number>(1)
+  const [pageSize, setPageSize] = useState<number>(10);
+  const [page, setPage] = useState<number>(1);
+
+  const is991px = useMediaQuery({ query: '(max-width: 991px)' });
+  const is500px = useMediaQuery({ query: '(max-width: 500px)' });
+  const is400px = useMediaQuery({ query: '(max-width: 400px)' });
 
   // UseEffect to check auth and signout if need be
   useEffect(() => {
@@ -86,9 +91,14 @@ export default function SessionComponent() {
               <thead>
                 <tr>
                   <th>Created</th>
-                  <th>City</th>
-                  <th>Country</th>
-                  <th>Lat, Lon</th>
+                  {is991px ?
+                    <th>Location</th>
+                    :
+                    <>
+                      <th>City</th>
+                      <th>Country</th>
+                      <th>Lat, Lon</th>
+                    </>}
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -103,17 +113,38 @@ export default function SessionComponent() {
                           </Moment>
                         </p>
                       </td>
-                      <td style={{ verticalAlign: 'middle' }}>
-                        <p style={{ margin: 0 }}>{session.city}</p>
-                      </td>
-                      <td style={{ verticalAlign: 'middle' }}>
-                        <p style={{ margin: 0 }}>{session.country}</p>
-                      </td>
-                      <td style={{ verticalAlign: 'middle' }}>
-                        <p style={{ margin: 0 }}>
-                          {session.latitude}, {session.longitude}
-                        </p>
-                      </td>
+
+                      {is991px ?
+                        <td style={{ verticalAlign: 'middle' }}>
+                          {is400px ?
+                            <div>
+                              <p style={{ margin: 0 }}>{session.city}</p>
+                              <p style={{ margin: 0 }}>{session.country}</p>
+                            </div>
+                            :
+                            <div style={{ display: 'flex' }}>
+                              <p style={{ margin: 0 }}>{session.city}</p>,&nbsp;
+                              <p style={{ margin: 0 }}>{session.country}</p>
+                            </div>
+                          }
+                          <p style={{ margin: 0 }}>
+                            {session.latitude}, {session.longitude}
+                          </p>
+                        </td>
+                        :
+                        <>
+                          <td style={{ verticalAlign: 'middle' }}>
+                            <p style={{ margin: 0 }}>{session.city}</p>
+                          </td>
+                          <td style={{ verticalAlign: 'middle' }}>
+                            <p style={{ margin: 0 }}>{session.country}</p>
+                          </td>
+                          <td style={{ verticalAlign: 'middle' }}>
+                            <p style={{ margin: 0 }}>
+                              {session.latitude}, {session.longitude}
+                            </p>
+                          </td>
+                        </>}
                       <td>
                         {revokingSession == session.id ? (
                           <div
@@ -143,7 +174,7 @@ export default function SessionComponent() {
                               color={session.currentSession ? 'red' : 'black'}
                               className='iconLinkStyle'
                             />
-                            {session.currentSession ? (
+                            {session.currentSession && !is500px ? (
                               <p
                                 style={{
                                   margin: 0,

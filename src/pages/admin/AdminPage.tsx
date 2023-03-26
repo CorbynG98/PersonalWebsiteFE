@@ -14,7 +14,7 @@ export default function AdminPage() {
   const [key, setKey] = useState('profile');
   const navigate = useNavigate();
 
-  const is991px = useMediaQuery({ query: '(max-width: 991px)' });
+  const is575px = useMediaQuery({ query: '(max-width: 575px)' });
 
   // UseEffect to check auth and signout if need be
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function AdminPage() {
   return (
     <React.Fragment>
       <Container id='adminPage' style={{ paddingTop: '2rem' }}>
-        <Card style={{ padding: '2rem' }}>
+        <Card style={{ padding: `${is575px ? '1rem' : '2rem'}` }}>
           <Tabs
             id='profile-tab'
             activeKey={key}

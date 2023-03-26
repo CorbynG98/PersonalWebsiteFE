@@ -5,6 +5,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Container, Spinner, Table } from 'react-bootstrap';
 import Moment from 'react-moment';
+import { useMediaQuery } from 'react-responsive';
 
 export default function ActivityComponent() {
   const [activities, setActivities] = useState<AuthActivityResource[]>(
@@ -12,7 +13,9 @@ export default function ActivityComponent() {
   );
   const [activitiesLoaded, setActivitiesLoaded] = useState<boolean>(false);
   const [pageSize, setPageSize] = useState<number>(10)
-  const [page, setPage] = useState<number>(1)
+  const [page, setPage] = useState<number>(1);
+
+  const is575px = useMediaQuery({ query: '(max-width: 575px)' });
 
   // UseEffect to check auth and signout if need be
   useEffect(() => {
@@ -56,8 +59,7 @@ export default function ActivityComponent() {
               <thead>
                 <tr>
                   <th>Actioned</th>
-                  <th>UserId</th>
-                  <th>SessionId</th>
+                  {!is575px && <th>SessionId</th>}
                   <th>Type</th>
                 </tr>
               </thead>
@@ -72,12 +74,12 @@ export default function ActivityComponent() {
                           </Moment>
                         </p>
                       </td>
-                      <td style={{ verticalAlign: 'middle' }}>
-                        <p style={{ margin: 0 }}>{activity.userId}</p>
-                      </td>
-                      <td style={{ verticalAlign: 'middle' }}>
-                        <p style={{ margin: 0 }}>{activity.sessionId}</p>
-                      </td>
+                      {!is575px &&
+                        <td style={{ verticalAlign: 'middle' }}>
+                          <p style={{ margin: 0 }}>{activity.sessionId}</p>
+                        </td>
+                      }
+
                       <td style={{ verticalAlign: 'middle' }}>
                         <p style={{ margin: 0 }}>
                           {AuthActivityType[activity.type]}
