@@ -24,7 +24,7 @@ export default function CVPage() {
           marginLeft: '2rem',
           zIndex: 10,
         }}
-        href='https://storage.googleapis.com/download/storage/v1/b/less_public_files/o/CV_CorbynGreenwood_2023_1Page?alt=media'
+        href='https://storage.googleapis.com/download/storage/v1/b/less_public_files/o/CV_Corbyn_Greenwood?alt=media'
         target='_blank'>
         <FontAwesomeIcon
           icon={faCloudArrowDown}
@@ -34,7 +34,7 @@ export default function CVPage() {
         />
       </a>
       <Document
-        file='https://storage.googleapis.com/less_public_files/CV_CorbynGreenwood_2023_1Page'
+        file='https://storage.googleapis.com/less_public_files/CV_Corbyn_Greenwood'
         onLoadSuccess={() => setLoaded(true)}
         onLoadError={onPDFError}>
         {!loaded ? (
